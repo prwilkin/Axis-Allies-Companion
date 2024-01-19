@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background: rgb(207, 207, 207)</string>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -48,7 +51,7 @@
      <x>70</x>
      <y>40</y>
      <width>160</width>
-     <height>321</height>
+     <height>332</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="buttons">
