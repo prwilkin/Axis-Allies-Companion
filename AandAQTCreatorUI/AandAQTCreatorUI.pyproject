@@ -1,0 +1,14 @@
+{
+    "files": [
+        "mainwindow.py",
+        "mainwindow.ui",
+        "changecountry.h",
+        "changecountry.cpp",
+        "changecountry.ui",
+        "seazone.h",
+        "seazone.cpp",
+        "seazone.ui",
+        "mainwindow.h",
+        "mainwindow.cpp"
+    ]
+}
