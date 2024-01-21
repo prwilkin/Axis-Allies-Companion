@@ -1,7 +1,7 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QGraphicsView, QGraphicsScene
+
 from PyQt5.QtSvg import QGraphicsSvgItem
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QGraphicsView, QGraphicsScene
 
 
 class SvgInteractiveViewer(QGraphicsView):
@@ -29,7 +29,7 @@ class SvgInteractiveViewer(QGraphicsView):
             # For example: #TODO
             # change_group_color('your_file.svg', group_id, '#FF0000')
 
-    def find_group_id(self, element_id): #TODO
+    def find_group_id(self, element_id): # TODO
         # Logic to find the group ID based on element ID
         # This would be specific to your SVG structure
         # For now, it's just a placeholder function

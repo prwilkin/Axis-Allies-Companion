@@ -15,11 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QFormLayout, QHBoxLayout, QLCDNumber,
-    QLabel, QLayout, QMainWindow, QMenuBar,
-    QPushButton, QSizePolicy, QStatusBar, QVBoxLayout,
-    QWidget)
-
+from PySide6.QtWidgets import (QApplication, QFormLayout, QGraphicsView, QHBoxLayout,
+    QLCDNumber, QLabel, QLayout, QMainWindow,
+    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -109,12 +108,9 @@ class Ui_MainWindow(object):
         self.centralwidget.setPalette(palette)
         self.centralwidget.setAutoFillBackground(False)
         self.centralwidget.setStyleSheet(u"")
-        self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(160, 100, 181, 31))
         self.verticalLayoutWidget_11 = QWidget(self.centralwidget)
         self.verticalLayoutWidget_11.setObjectName(u"verticalLayoutWidget_11")
-        self.verticalLayoutWidget_11.setGeometry(QRect(550, 20, 141, 111))
+        self.verticalLayoutWidget_11.setGeometry(QRect(550, 10, 141, 91))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget_11)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -139,12 +135,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.phase)
 
-        self.phaseButton = QPushButton(self.verticalLayoutWidget_11)
-        self.phaseButton.setObjectName(u"phaseButton")
-        self.phaseButton.setIconSize(QSize(20, 20))
-
-        self.verticalLayout.addWidget(self.phaseButton)
-
         self.horizontalLayoutWidget_2 = QWidget(self.centralwidget)
         self.horizontalLayoutWidget_2.setObjectName(u"horizontalLayoutWidget_2")
         self.horizontalLayoutWidget_2.setGeometry(QRect(10, 10, 531, 91))
@@ -158,6 +148,10 @@ class Ui_MainWindow(object):
         self.ussrTurn.setAlignment(Qt.AlignCenter)
 
         self.ussrIPC.addWidget(self.ussrTurn)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.ussrIPC.addItem(self.verticalSpacer)
 
         self.ussrBank = QLabel(self.horizontalLayoutWidget_2)
         self.ussrBank.setObjectName(u"ussrBank")
@@ -176,6 +170,10 @@ class Ui_MainWindow(object):
 
         self.gerIPC.addWidget(self.gerTurn)
 
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gerIPC.addItem(self.verticalSpacer_2)
+
         self.gerBank = QLabel(self.horizontalLayoutWidget_2)
         self.gerBank.setObjectName(u"gerBank")
         self.gerBank.setAlignment(Qt.AlignCenter)
@@ -192,6 +190,10 @@ class Ui_MainWindow(object):
         self.japTurn.setAlignment(Qt.AlignCenter)
 
         self.japIPC.addWidget(self.japTurn)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.japIPC.addItem(self.verticalSpacer_3)
 
         self.japBank = QLabel(self.horizontalLayoutWidget_2)
         self.japBank.setObjectName(u"japBank")
@@ -210,6 +212,10 @@ class Ui_MainWindow(object):
 
         self.usaIPC.addWidget(self.usaTurn)
 
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.usaIPC.addItem(self.verticalSpacer_4)
+
         self.usaBank = QLabel(self.horizontalLayoutWidget_2)
         self.usaBank.setObjectName(u"usaBank")
         self.usaBank.setAlignment(Qt.AlignCenter)
@@ -226,6 +232,10 @@ class Ui_MainWindow(object):
         self.chinaTurn.setAlignment(Qt.AlignCenter)
 
         self.chinaIPC.addWidget(self.chinaTurn)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.chinaIPC.addItem(self.verticalSpacer_5)
 
         self.chinaBank = QLabel(self.horizontalLayoutWidget_2)
         self.chinaBank.setObjectName(u"chinaBank")
@@ -244,6 +254,10 @@ class Ui_MainWindow(object):
 
         self.ukeurIPC.addWidget(self.ukeurTurn)
 
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.ukeurIPC.addItem(self.verticalSpacer_6)
+
         self.ukeurBank = QLabel(self.horizontalLayoutWidget_2)
         self.ukeurBank.setObjectName(u"ukeurBank")
         self.ukeurBank.setAlignment(Qt.AlignCenter)
@@ -261,6 +275,10 @@ class Ui_MainWindow(object):
 
         self.ukpacIPC.addWidget(self.ukpacTurn)
 
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.ukpacIPC.addItem(self.verticalSpacer_7)
+
         self.ukpacBank = QLabel(self.horizontalLayoutWidget_2)
         self.ukpacBank.setObjectName(u"ukpacBank")
         self.ukpacBank.setAlignment(Qt.AlignCenter)
@@ -277,6 +295,10 @@ class Ui_MainWindow(object):
         self.itaTurn.setAlignment(Qt.AlignCenter)
 
         self.itaIPC.addWidget(self.itaTurn)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.itaIPC.addItem(self.verticalSpacer_8)
 
         self.itaBank = QLabel(self.horizontalLayoutWidget_2)
         self.itaBank.setObjectName(u"itaBank")
@@ -296,6 +318,10 @@ class Ui_MainWindow(object):
 
         self.anzacIPC.addWidget(self.anzacTurn)
 
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.anzacIPC.addItem(self.verticalSpacer_9)
+
         self.anzacBank = QLabel(self.horizontalLayoutWidget_2)
         self.anzacBank.setObjectName(u"anzacBank")
         self.anzacBank.setTextFormat(Qt.AutoText)
@@ -314,6 +340,10 @@ class Ui_MainWindow(object):
 
         self.fraIPC.addWidget(self.fraTurn)
 
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.fraIPC.addItem(self.verticalSpacer_10)
+
         self.fraBank = QLabel(self.horizontalLayoutWidget_2)
         self.fraBank.setObjectName(u"fraBank")
         self.fraBank.setAlignment(Qt.AlignCenter)
@@ -325,7 +355,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayoutWidget = QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(10, 30, 531, 53))
+        self.horizontalLayoutWidget.setGeometry(QRect(10, 30, 531, 45))
         self.countryIcons = QHBoxLayout(self.horizontalLayoutWidget)
         self.countryIcons.setObjectName(u"countryIcons")
         self.countryIcons.setSizeConstraint(QLayout.SetMaximumSize)
@@ -391,86 +421,41 @@ class Ui_MainWindow(object):
 
         self.countryIcons.addWidget(self.fra)
 
-        self.map = QWidget(self.centralwidget)
-        self.map.setObjectName(u"map")
-        self.map.setGeometry(QRect(19, 139, 761, 401))
-        palette1 = QPalette()
-        palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
-        brush9 = QBrush(QColor(0, 85, 255, 255))
-        brush9.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Button, brush9)
-        brush10 = QBrush(QColor(127, 170, 255, 255))
-        brush10.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Light, brush10)
-        brush11 = QBrush(QColor(63, 127, 255, 255))
-        brush11.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Midlight, brush11)
-        brush12 = QBrush(QColor(0, 42, 127, 255))
-        brush12.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Dark, brush12)
-        brush13 = QBrush(QColor(0, 57, 170, 255))
-        brush13.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Active, QPalette.Mid, brush13)
-        palette1.setBrush(QPalette.Active, QPalette.Text, brush)
-        palette1.setBrush(QPalette.Active, QPalette.BrightText, brush2)
-        palette1.setBrush(QPalette.Active, QPalette.ButtonText, brush)
-        palette1.setBrush(QPalette.Active, QPalette.Base, brush2)
-        palette1.setBrush(QPalette.Active, QPalette.Window, brush9)
-        palette1.setBrush(QPalette.Active, QPalette.Shadow, brush)
-        palette1.setBrush(QPalette.Active, QPalette.AlternateBase, brush10)
-        palette1.setBrush(QPalette.Active, QPalette.ToolTipBase, brush6)
-        palette1.setBrush(QPalette.Active, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Active, QPalette.PlaceholderText, brush7)
-#endif
-        palette1.setBrush(QPalette.Active, QPalette.Accent, brush2)
-        palette1.setBrush(QPalette.Inactive, QPalette.WindowText, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.Button, brush9)
-        palette1.setBrush(QPalette.Inactive, QPalette.Light, brush10)
-        palette1.setBrush(QPalette.Inactive, QPalette.Midlight, brush11)
-        palette1.setBrush(QPalette.Inactive, QPalette.Dark, brush12)
-        palette1.setBrush(QPalette.Inactive, QPalette.Mid, brush13)
-        palette1.setBrush(QPalette.Inactive, QPalette.Text, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.BrightText, brush2)
-        palette1.setBrush(QPalette.Inactive, QPalette.ButtonText, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.Base, brush2)
-        palette1.setBrush(QPalette.Inactive, QPalette.Window, brush9)
-        palette1.setBrush(QPalette.Inactive, QPalette.Shadow, brush)
-        palette1.setBrush(QPalette.Inactive, QPalette.AlternateBase, brush10)
-        palette1.setBrush(QPalette.Inactive, QPalette.ToolTipBase, brush6)
-        palette1.setBrush(QPalette.Inactive, QPalette.ToolTipText, brush)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Inactive, QPalette.PlaceholderText, brush7)
-#endif
-        palette1.setBrush(QPalette.Inactive, QPalette.Accent, brush2)
-        palette1.setBrush(QPalette.Disabled, QPalette.WindowText, brush12)
-        palette1.setBrush(QPalette.Disabled, QPalette.Button, brush9)
-        palette1.setBrush(QPalette.Disabled, QPalette.Light, brush10)
-        palette1.setBrush(QPalette.Disabled, QPalette.Midlight, brush11)
-        palette1.setBrush(QPalette.Disabled, QPalette.Dark, brush12)
-        palette1.setBrush(QPalette.Disabled, QPalette.Mid, brush13)
-        palette1.setBrush(QPalette.Disabled, QPalette.Text, brush12)
-        palette1.setBrush(QPalette.Disabled, QPalette.BrightText, brush2)
-        palette1.setBrush(QPalette.Disabled, QPalette.ButtonText, brush12)
-        palette1.setBrush(QPalette.Disabled, QPalette.Base, brush9)
-        palette1.setBrush(QPalette.Disabled, QPalette.Window, brush9)
-        palette1.setBrush(QPalette.Disabled, QPalette.Shadow, brush)
-        palette1.setBrush(QPalette.Disabled, QPalette.AlternateBase, brush9)
-        palette1.setBrush(QPalette.Disabled, QPalette.ToolTipBase, brush6)
-        palette1.setBrush(QPalette.Disabled, QPalette.ToolTipText, brush)
-        brush14 = QBrush(QColor(0, 42, 127, 127))
-        brush14.setStyle(Qt.SolidPattern)
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush14)
-#endif
-        brush15 = QBrush(QColor(76, 136, 255, 255))
-        brush15.setStyle(Qt.SolidPattern)
-        palette1.setBrush(QPalette.Disabled, QPalette.Accent, brush15)
-        self.map.setPalette(palette1)
-        self.map.setAutoFillBackground(True)
-        self.label_2 = QLabel(self.centralwidget)
+        self.anzac.raise_()
+        self.ita.raise_()
+        self.ussr.raise_()
+        self.fra.raise_()
+        self.ukeur.raise_()
+        self.ger.raise_()
+        self.china.raise_()
+        self.jap.raise_()
+        self.usa.raise_()
+        self.ukpac.raise_()
+        # self.board = QGraphicsView(self.centralwidget)
+        # self.board.setObjectName(u"board")
+        # self.board.setGeometry(QRect(15, 121, 781, 421))
+        self.verticalLayoutWidget = QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(700, 10, 95, 96))
+        self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.label_2 = QLabel(self.verticalLayoutWidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(70, 100, 81, 31))
+
+        self.verticalLayout_2.addWidget(self.label_2)
+
+        self.label_3 = QLabel(self.verticalLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+
+        self.verticalLayout_2.addWidget(self.label_3)
+
+        self.phaseButton = QPushButton(self.verticalLayoutWidget)
+        self.phaseButton.setObjectName(u"phaseButton")
+        self.phaseButton.setIconSize(QSize(20, 20))
+
+        self.verticalLayout_2.addWidget(self.phaseButton)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -487,10 +472,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">UK-Pac</span></p></body></html>", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Turn:</span></p></body></html>", None))
-        self.phase.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt;\">Combat Phase</span></p></body></html>", None))
-        self.phaseButton.setText(QCoreApplication.translate("MainWindow", u"Next Phase", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Turn:</span></p></body></html>", None))
+        self.phase.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">Combat Phase</span></p></body></html>", None))
         self.ussrTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.ussrBank.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.gerTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
@@ -521,6 +504,8 @@ class Ui_MainWindow(object):
         self.ita.setText("")
         self.anzac.setText("")
         self.fra.setText("")
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt;\">Country:</span></p></body></html>", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Country:</span></p></body></html>", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">UK-Pac</span></p></body></html>", None))
+        self.phaseButton.setText(QCoreApplication.translate("MainWindow", u"Next Phase", None))
     # retranslateUi
 
