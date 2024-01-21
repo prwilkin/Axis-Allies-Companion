@@ -14,7 +14,7 @@ from ui_mainwindow import Ui_MainWindow
 from ui_seazone import Ui_seazone
 from ui_changeCountry import Ui_changeCountry
 from src.svggui import SvgInteractiveViewer
-from src.svg import svgWidget
+
 
 widgetOpen = False  # TODO
 
@@ -46,7 +46,18 @@ class MainWindow(QMainWindow):
         # print("SVG Widget size:", self.svgWidget.size())
 
         # svg map 2
+        None
+        # Instantiate the SVG viewer
+        self.svgViewer = SvgInteractiveViewer('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board/updated.svg')
+        # self.svgViewer = SvgInteractiveViewer("./board/test.svg")
 
+        # Set up the layout for the SVG viewer
+        self.ui.board = QWidget(self.ui.centralwidget)
+        self.ui.board.setObjectName("board")
+        self.ui.board.setGeometry(QRect(15, 121, 789, 421))
+        self.ui.boardLayout = QVBoxLayout(self.ui.board)
+        self.ui.boardLayout.addWidget(self.svgViewer)
+        self.ui.board.setLayout(self.ui.boardLayout)
 
     def nextPhase_Click(self):
         print("Next")
