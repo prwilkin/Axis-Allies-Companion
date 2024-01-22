@@ -42,6 +42,43 @@ class SvgInteractiveViewer(QGraphicsView):
         self.maxZoom = 5.0  # Maximum zoom level
         self.minZoom = 1  # Minimum zoom level
 
+        self.elementCoords = self.parse_svg(svgFilePath)
+
+    def parse_svg(self, svgFilePath):
+        # Define the namespace for SVG
+        namespace = {'svg': 'http://www.w3.org/2000/svg'}
+        ET.register_namespace('', "http://www.w3.org/2000/svg")
+
+        tree = ET.parse(svgFilePath)
+        root = tree.getroot()
+
+        elementCoords = {}
+        # Iterate over all elements with an ID
+        for element in root.findall('.//*[@id]', namespaces=namespace):
+            id = element.get('id')
+            # Attempt to extract x, y coordinates and width, height
+            x = float(element.get('x', 0))
+            y = float(element.get('y', 0))
+            width = float(element.get('width', 0))
+            height = float(element.get('height', 0))
+            elementCoords[id] = (x, y, width, height)
+
+        return elementCoords
+
+    def mousePressEvent(self, event):
+        scenePos = self.mapToScene(event.pos())
+        clickedElement = None
+
+        # Check if the click is within the bounds of any element
+        for id, (x, y, width, height) in self.elementCoords.items():
+            if x <= scenePos.x() <= x + width and y <= scenePos.y() <= y + height:
+                clickedElement = id
+                break
+
+        if clickedElement:
+            print(f"Clicked on element with ID: {clickedElement}")
+            # Implement additional logic as needed
+
     def wheelEvent(self, event):
         factor = 1.2
         newZoom = self.currentZoom * (factor if event.angleDelta().y() > 0 else 1 / factor)
@@ -51,21 +88,21 @@ class SvgInteractiveViewer(QGraphicsView):
                        factor if event.angleDelta().y() > 0 else 1 / factor)
             self.currentZoom = newZoom
 
-    def mousePressEvent(self, event):
-        # Find the item at the clicked position
-        item = self.itemAt(event.pos())
-        if item and isinstance(item, QGraphicsSvgItem):
-            # Get the ID of the clicked element
-            element_id = item.elementId()
-
-            # Here you can add logic to map this element ID to its group ID
-            group_id = self.find_group_id(element_id)
-
-            # Now you can pass this group_id to your other functions
-            print(f"Clicked on item with element ID: {element_id}, which belongs to group ID: {group_id}")
-
-            # For example: # TODO
-            # change_group_color('your_file.svg', group_id, '#FF0000')
+    # def mousePressEvent(self, event):
+    #     # Find the item at the clicked position
+    #     item = self.itemAt(event.pos())
+    #     if item and isinstance(item, QGraphicsSvgItem):
+    #         # Get the ID of the clicked element
+    #         element_id = item.elementId()
+    #
+    #         # Here you can add logic to map this element ID to its group ID
+    #         group_id = self.find_group_id(element_id)
+    #
+    #         # Now you can pass this group_id to your other functions
+    #         print(f"Clicked on item with element ID: {element_id}, which belongs to group ID: {group_id}")
+    #
+    #         # For example: # TODO
+    #         # change_group_color('your_file.svg', group_id, '#FF0000')
 
     def find_group_id(self, element_id): # TODO
         # Logic to find the group ID based on element ID

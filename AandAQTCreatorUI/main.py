@@ -1,23 +1,26 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6.QtCore import QRect
+from PySide6.QtCore import QRect, QUrl
 from PySide6.QtSvgWidgets import QGraphicsSvgItem
+from PySide6.QtWebChannel import QWebChannel
+from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QGraphicsScene, QGraphicsView, QVBoxLayout
 
 # Important:
 # You need to run the following command to generate the ui_****.py file
-#   pyside6-uic .\AandAQTCreatorUI\mainwindow.ui -o .\AandAQTCreatorUI\ui_mainwindow.py
-#   pyside6-uic .\AandAQTCreatorUI\changecountry.ui -o .\AandAQTCreatorUI\ui_changeCountry.py
-#   pyside6-uic .\AandAQTCreatorUI\seazone.ui -o .\AandAQTCreatorUI\ui_seazone.py
+#   pyside6-uic ./AandAQTCreatorUI/mainwindow.ui -o ./AandAQTCreatorUI/ui_mainwindow.py
+#   pyside6-uic ./AandAQTCreatorUI/changecountry.ui -o ./AandAQTCreatorUI/ui_changeCountry.py
+#   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
 from ui_mainwindow import Ui_MainWindow
 from ui_seazone import Ui_seazone
 from ui_changeCountry import Ui_changeCountry
 from src.svggui import SvgInteractiveViewer
-
+from src.svg import MyObject
 
 widgetOpen = False  # TODO
-
+# Enable remote debugging
+sys.argv.append('--remote-debugging-port=12345')
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -29,35 +32,21 @@ class MainWindow(QMainWindow):
         # button init
         self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
 
-        # svg map
-        # self.svgWidget = svgWidget()
-        #
-        # self.ui.board = QWidget(self.ui.centralwidget)
-        # self.ui.board.setObjectName("board")
-        # self.ui.board.setGeometry(QRect(15, 121, 781, 421))
-        # self.ui.boardLayout = QVBoxLayout(self.ui.board)
-        # self.ui.boardLayout.addWidget(self.svgWidget)
-        # self.ui.board.setLayout(self.ui.boardLayout)
-        #
-        # # self.svgWidget.setParent(self.ui.board)
-        # # self.svgWidget.show()  # Explicitly show the widget
-        #
-        # # Check size
-        # print("SVG Widget size:", self.svgWidget.size())
-
-        # svg map 2
-        None
-        # Instantiate the SVG viewer
-        self.svgViewer = SvgInteractiveViewer('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board/updated.svg')
-        # self.svgViewer = SvgInteractiveViewer("./board/test.svg")
-
-        # Set up the layout for the SVG viewer
+        # Create and add the web browser to the layout
         self.ui.board = QWidget(self.ui.centralwidget)
         self.ui.board.setObjectName("board")
         self.ui.board.setGeometry(QRect(15, 121, 789, 421))
+        self.ui.browser = QWebEngineView()
         self.ui.boardLayout = QVBoxLayout(self.ui.board)
-        self.ui.boardLayout.addWidget(self.svgViewer)
+        self.ui.boardLayout.addWidget(self.ui.browser)
         self.ui.board.setLayout(self.ui.boardLayout)
+
+        self.myObj = MyObject()
+        channel = QWebChannel()
+        channel.registerObject('myObj', self.myObj)
+        self.ui.browser.page().setWebChannel(channel)
+
+        self.ui.browser.load(QUrl.fromLocalFile('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board.html'))
 
     def nextPhase_Click(self):
         print("Next")

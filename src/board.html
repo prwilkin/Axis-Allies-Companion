@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>SVG Viewer</title>
+    </head>
+    <body>
+        <object id="svgObject" type="image/svg+xml" data="board/board.svg"></object>
+        <script>
+            window.onload = function() {
+            console.log("load script");
+            var svgObject = document.getElementById('svgObject');
+
+            setTimeout(function() {
+                var svgDoc = svgObject.contentDocument;
+                var svgItems = svgDoc.getElementsByTagName("*");
+                console.log("Adding click listeners to " + svgItems.length + " items.");
+                for (var i = 0; i < svgItems.length; i++) {
+                    svgItems[i].addEventListener("click", function(event) {
+                        console.log("Clicked on element with ID: " + event.target.id);
+                        // Rest of your code...
+                    });
+                }
+            }, 1000); // Adjust the timeout as needed
+        };
+        </script>
+    </body>
+</html>
