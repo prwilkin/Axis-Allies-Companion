@@ -2,10 +2,11 @@
 import sys
 
 from PySide6.QtCore import QRect, QUrl
-from PySide6.QtSvgWidgets import QGraphicsSvgItem
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QGraphicsScene, QGraphicsView, QVBoxLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
+
+from src.svg import svgViewer
 
 # Important:
 # You need to run the following command to generate the ui_****.py file
@@ -13,14 +14,11 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QGraphicsScene
 #   pyside6-uic ./AandAQTCreatorUI/changecountry.ui -o ./AandAQTCreatorUI/ui_changeCountry.py
 #   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
 from ui_mainwindow import Ui_MainWindow
-from ui_seazone import Ui_seazone
 from ui_changeCountry import Ui_changeCountry
-from src.svggui import SvgInteractiveViewer
-from src.svg import MyObject
+from ui_seazone import Ui_seazone
 
 widgetOpen = False  # TODO
-# Enable remote debugging
-sys.argv.append('--remote-debugging-port=12345')
+
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -36,17 +34,10 @@ class MainWindow(QMainWindow):
         self.ui.board = QWidget(self.ui.centralwidget)
         self.ui.board.setObjectName("board")
         self.ui.board.setGeometry(QRect(15, 121, 789, 421))
-        self.ui.browser = QWebEngineView()
+        self.ui.browser = svgViewer()
         self.ui.boardLayout = QVBoxLayout(self.ui.board)
         self.ui.boardLayout.addWidget(self.ui.browser)
         self.ui.board.setLayout(self.ui.boardLayout)
-
-        self.myObj = MyObject()
-        channel = QWebChannel()
-        channel.registerObject('myObj', self.myObj)
-        self.ui.browser.page().setWebChannel(channel)
-
-        self.ui.browser.load(QUrl.fromLocalFile('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board.html'))
 
     def nextPhase_Click(self):
         print("Next")
