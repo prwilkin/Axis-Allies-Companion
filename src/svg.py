@@ -20,30 +20,6 @@ class svgViewer(QWebEngineView):
         # load SVG and HTML
         self.load(QUrl.fromLocalFile('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board.html'))
 
-        self.page().loadFinished.connect(self.onLoadFinished)
-
-    # Hide scrollbars by injecting CSS
-    def onLoadFinished(self):
-        css = "body { overflow: hidden; }"
-        script = f"var style = document.createElement('style'); style.type = 'text/css'; style.appendChild(document.createTextNode('{css}')); document.head.appendChild(style);"
-        self.page().runJavaScript(script)
-
-    # allow zoom with scroll wheel
-    def wheelEvent(self, event):
-        modifiers = QApplication.keyboardModifiers()
-        if modifiers == Qt.ControlModifier:
-            zoomInFactor = 1.1
-            zoomOutFactor = 1 / zoomInFactor
-
-            # Zoom in or out
-            if event.angleDelta().y() > 0:
-                self.setZoomFactor(self.zoomFactor() * zoomInFactor)
-            else:
-                self.setZoomFactor(self.zoomFactor() * zoomOutFactor)
-            event.accept()  # Indicate that the event was handled
-        else:
-            super(svgViewer, self).wheelEvent(event)
-
 
 # This class is the tool for communicating with python and Javascript
 class MyObject(QObject):
