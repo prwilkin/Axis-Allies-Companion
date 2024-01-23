@@ -5,29 +5,62 @@
     <script src="qrc:///qtwebchannel/qwebchannel.js" type="text/javascript"></script>
 </head>
 <body>
-<object data="board/board.svg" id="svgObject" type="image/svg+xml"></object>
-<script>
-    window.onload = function () {
-        console.log("load script");
-        var svgObject = document.getElementById('svgObject');
-        setTimeout(function () {
-            var svgDoc = svgObject.contentDocument;
-\
-            // Adding click listeners
-            var svgItems = svgDoc.getElementsByTagName("*");
-            console.log("Adding click listeners to " + svgItems.length + " items.");
-            for (var i = 0; i < svgItems.length; i++) {
-                svgItems[i].addEventListener("click", function (event) {
-                    console.log("Clicked on element with ID: " + event.target.id);
-                    // TODO: Send the ID to the Python backend
-                    new QWebChannel(qt.webChannelTransport, function (channel) {
-                        var myObj = channel.objects.myObj;
-                        myObj.receiveId(event.target.id);
-                    });
-                });
+    <object data="board/board.svg" id="svgObject" type="image/svg+xml"></object>
+    <script>
+        // Opens Debug for console.log to be sent to Py
+        new QWebChannel(qt.webChannelTransport, function(channel) {
+            // Reference to the Python object
+            var pyObj = channel.objects.myObj;
+
+            // Override console.log function
+            console.log = function(message) {
+                pyObj.receiveLog(message.toString());
+            };
+        });
+
+        // Receives color from Py and apply it
+        function applyColorToGroup(groupName, color) {
+            //console.log("recieved call: " + groupName + " | " + color);
+            var svgDoc = document.getElementById('svgObject').contentDocument;
+            var group = svgDoc.getElementById(groupName);
+            //console.log("Group: " + group.id);
+            if (group) {
+                //console.log(group.children);
+                var children = group.children;
+                //console.log(children.length)
+                for (var i = 0; i < children.length; i++) {
+                    //console.log(children[i].tagName);
+                    if (children[i].tagName !== 'text') {
+                        children[i].style.fill = color;
+                        console.log("Color applied to: " + children[i].id);
+                    }
+                }
+                } else {
+                    console.log("Group not found: " + groupName);
             }
-        }, 1000); // Adjust the timeout as needed
-    };
-</script>
+        }
+
+        // when loaded add clicking to each element
+        window.onload = function () {
+            var svgObject = document.getElementById('svgObject');
+            setTimeout(function () {
+                var svgDoc = svgObject.contentDocument;
+
+                // Adding click listeners
+                var svgItems = svgDoc.getElementsByTagName("*");
+                console.log("Adding click listeners to " + svgItems.length + " items.");
+                for (var i = 0; i < svgItems.length; i++) {
+                    svgItems[i].addEventListener("click", function (event) {
+                        console.log("Clicked on element with ID: " + event.target.id);
+                        // TODO: Send the ID to the Python backend
+                        new QWebChannel(qt.webChannelTransport, function (channel) {
+                            var myObj = channel.objects.myObj;
+                            myObj.receiveId(event.target.id);
+                        });
+                    });
+                }
+            }, 1000); // Adjust the timeout as needed in order to allow clicks to be added
+        };
+    </script>
 </body>
 </html>

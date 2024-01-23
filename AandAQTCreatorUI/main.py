@@ -1,13 +1,10 @@
 # This Python file uses the following encoding: utf-8
 import sys
 
-from PySide6.QtCore import QRect, QUrl
-from PySide6.QtWebChannel import QWebChannel
-from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
 
 from src.svg import svgViewer
-
 # Important:
 # You need to run the following command to generate the ui_****.py file
 #   pyside6-uic ./AandAQTCreatorUI/mainwindow.ui -o ./AandAQTCreatorUI/ui_mainwindow.py
@@ -34,14 +31,14 @@ class MainWindow(QMainWindow):
         self.ui.board = QWidget(self.ui.centralwidget)
         self.ui.board.setObjectName("board")
         self.ui.board.setGeometry(QRect(15, 121, 789, 421))
-        self.ui.browser = svgViewer()
+        self.ui.browser = svgViewer(self.ui)
         self.ui.boardLayout = QVBoxLayout(self.ui.board)
         self.ui.boardLayout.addWidget(self.ui.browser)
         self.ui.board.setLayout(self.ui.boardLayout)
 
     def nextPhase_Click(self):
         print("Next")
-        # change connection TODO
+        # TODO: change connection
         # self.changeCountryWidget = changeCountryWindow()
         # self.changeCountryWidget.show()
         # self.changeCountryWidget.territory("South Germany")
