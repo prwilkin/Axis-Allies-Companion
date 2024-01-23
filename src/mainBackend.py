@@ -1,7 +1,15 @@
 # This is a sample Python script.
 
+
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+def changeOwner(territory):
+    from AandAQTCreatorUI.main import changeCountryWindow
+    changeCountryWidget = changeCountryWindow()
+    changeCountryWidget.territory(territory)
+    changeCountryWidget.exec_()
+    return changeCountryWidget.country
 
 
 def print_hi(name):

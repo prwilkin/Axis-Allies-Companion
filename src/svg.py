@@ -2,6 +2,8 @@ from PySide6.QtCore import QObject, Slot, QUrl
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
+from src.mainBackend import changeOwner
+
 
 # svg will be loaded in this webEngineView class
 class svgViewer(QWebEngineView):
@@ -23,14 +25,26 @@ class MyObject(QObject):
     def __init__(self, mainWindowUI):
         super().__init__()
         self.mainWindowUI = mainWindowUI
+        self.convoy = [1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44,
+                        54, 62, 63, 70, 71, 72, 80, 82, 85, 89, 93, 97, 98,
+                        99, 101, 105, 106, 109, 119, 125]
 
     # JS to Py that handles click events in the svg
     @Slot(str)
     def receiveId(self, element_id):
         print("Clicked on element with ID:", element_id)
-        # TODO: Add further processing here
-        color = self.processId(element_id)
-        self.sendColorToJavaScript(element_id, color)
+        status, territory = self.processId(element_id)
+        if status:
+            print(territory)
+            # open window & get country
+            country = changeOwner(territory)
+            # TODO: update backend record keeping
+
+            # TODO: give color to javascript
+            # color =
+            # self.sendColorToJavaScript(element_id, color)
+        else:
+            return None
 
     # Py to JS function to call with group name and color
     @Slot(str, str)
@@ -39,16 +53,26 @@ class MyObject(QObject):
         script = f"applyColorToGroup('{groupName}', '{color}');"
         self.mainWindowUI.browser.page().runJavaScript(script)
 
+    # cut id into a group id and filter non-eligible out
     def processId(self, element_id):
-        # TODO
-        # Logic to determine color based on element_id
-        # For example, return a color string like '#FF5733'
-        return '#2870BA'
-        # US Green #186518
-        # France Blue #2870BA
-        # Germany Black #626262
-        # USSR Red #BB0000
-        #
+        # contains seazone, filter with numbers to check for convoy
+        if ("Sea Zone" or "sea zone") in element_id:
+            split = element_id.split(" ")
+            for number in self.convoy:
+                if int(split[len(split) - 1]) == number:
+                    return True, "Sea Zone" + split[len(split) - 1]
+
+        # Convoys in: 1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44
+        # 54, 62, 63, 70, 71, 72, 80, 82, 85, 89, 93, 97, 98, 99, 101, 105
+        # 106, 109, 119, 125
+        # contains '_' ignore as its text element
+        elif "_" in element_id:
+            return False, None
+        # Split at ' 0'
+        else:
+            territory = element_id.split(" 0")
+            return True, territory[0]
+
 
     # JS to Py Debug channel for console.log since PyCharm Debugger wont enter java script code
     @Slot(str)

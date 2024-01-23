@@ -11,20 +11,21 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
 from PySide6.QtWidgets import (QApplication, QFormLayout, QGraphicsView, QHBoxLayout,
     QLCDNumber, QLabel, QLayout, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QSpacerItem,
-    QStatusBar, QVBoxLayout, QWidget)
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QSpacerItem, QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(800, 602)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
@@ -431,9 +432,9 @@ class Ui_MainWindow(object):
         self.jap.raise_()
         self.usa.raise_()
         self.ukpac.raise_()
-        # self.board = QGraphicsView(self.centralwidget)
-        # self.board.setObjectName(u"board")
-        # self.board.setGeometry(QRect(15, 121, 781, 421))
+        self.board = QGraphicsView(self.centralwidget)
+        self.board.setObjectName(u"board")
+        self.board.setGeometry(QRect(15, 121, 781, 421))
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
         self.verticalLayoutWidget.setGeometry(QRect(700, 10, 95, 96))
@@ -460,10 +461,17 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 800, 26))
+        self.menuSave = QMenu(self.menubar)
+        self.menuSave.setObjectName(u"menuSave")
+        self.menuLoad = QMenu(self.menubar)
+        self.menuLoad.setObjectName(u"menuLoad")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.menubar.addAction(self.menuSave.menuAction())
+        self.menubar.addAction(self.menuLoad.menuAction())
 
         self.retranslateUi(MainWindow)
 
@@ -507,5 +515,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Country:</span></p></body></html>", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">UK-Pac</span></p></body></html>", None))
         self.phaseButton.setText(QCoreApplication.translate("MainWindow", u"Next Phase", None))
+        self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.menuLoad.setTitle(QCoreApplication.translate("MainWindow", u"Load", None))
     # retranslateUi
 

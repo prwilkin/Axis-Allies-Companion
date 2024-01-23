@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1106,6 +1106,18 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSave">
+    <property name="title">
+     <string>Save</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuLoad">
+    <property name="title">
+     <string>Load</string>
+    </property>
+   </widget>
+   <addaction name="menuSave"/>
+   <addaction name="menuLoad"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

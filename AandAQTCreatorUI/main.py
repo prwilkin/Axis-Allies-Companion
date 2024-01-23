@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
 from src.svg import svgViewer
 # Important:
@@ -14,8 +14,6 @@ from ui_mainwindow import Ui_MainWindow
 from ui_changeCountry import Ui_changeCountry
 from ui_seazone import Ui_seazone
 
-widgetOpen = False  # TODO
-
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -26,6 +24,8 @@ class MainWindow(QMainWindow):
 
         # button init
         self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
+        self.ui.menuSave.triggered.connect(self)    # TODO: add save functionality
+        self.ui.menuLoad.triggered.connect(self)    # TODO: add load functionality
 
         # Create and add the web browser to the layout
         self.ui.board = QWidget(self.ui.centralwidget)
@@ -39,15 +39,15 @@ class MainWindow(QMainWindow):
     def nextPhase_Click(self):
         print("Next")
         # TODO: change connection
-        # self.changeCountryWidget = changeCountryWindow()
-        # self.changeCountryWidget.show()
-        # self.changeCountryWidget.territory("South Germany")
-        self.seazoneWidget = seazoneWindow()
-        self.seazoneWidget.show()
-        self.seazoneWidget.seazoneNum(125)
+        self.changeCountryWidget = changeCountryWindow()
+        self.changeCountryWidget.show()
+        self.changeCountryWidget.territory("South Germany")
+        # self.seazoneWidget = seazoneWindow()
+        # self.seazoneWidget.show()
+        # self.seazoneWidget.seazoneNum(125)
 
 
-class seazoneWindow(QWidget):
+class seazoneWindow(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.seazoneUI = Ui_seazone()
@@ -73,12 +73,11 @@ class seazoneWindow(QWidget):
         self.close()
 
 
-class changeCountryWindow(QWidget):
+class changeCountryWindow(QDialog):
     def __init__(self, parent=None):
-        if widgetOpen == True:
-            self.close()
-            return
         super().__init__(parent)
+        self.open = True
+        self.country = ""
         self.changeCountryUI = Ui_changeCountry()
         self.changeCountryUI.setupUi(self)
 
@@ -91,35 +90,33 @@ class changeCountryWindow(QWidget):
         self.setWindowTitle(territory)
 
     def changeCountry_Ok_Click(self):
-        country = ""
         if self.changeCountryUI.ussr.isChecked():
-            country = "ussr"
+            self.country = "ussr"
         elif self.changeCountryUI.ukeur.isChecked():
-            country = "ukeur"
+            self.country = "ukeur"
         elif self.changeCountryUI.ukpac.isChecked():
-            country = "ukpac"
+            self.country = "ukpac"
         elif self.changeCountryUI.anzac.isChecked():
-            country = "anzac"
+            self.country = "anzac"
         elif self.changeCountryUI.usa.isChecked():
-            country = "usa"
+            self.country = "usa"
         elif self.changeCountryUI.china.isChecked():
-            country = "china"
+            self.country = "china"
         elif self.changeCountryUI.fra.isChecked():
-            country = "fra"
+            self.country = "fra"
         elif self.changeCountryUI.ger.isChecked():
-            country = "ger"
+            self.country = "ger"
         elif self.changeCountryUI.jap.isChecked():
-            country = "jap"
+            self.country = "jap"
         elif self.changeCountryUI.ita.isChecked():
-            country = "ita"
+            self.country = "ita"
         else:
             return
-        print(country)
-        # implement changed country TODO
+        # TODO: implement changed country
         self.close()
 
     def changeCountry_Cancel_Click(self):
-        # print("Cancel")
+        print("Cancel")
         self.close()
 
 
