@@ -1,138 +1,149 @@
-Turn: 0
-Phase: Germany
-Germany: 30
-Soviet Union: 37
-Japan: 26
-United States: 52
-China: 12
-United Kingdom Europe: 28
-United Kingdom Pacific: 17
-Italy: 10
-ANZAC: 10
-France: 19
-Soviet Union-Germany: False
-Soviet Union-Italy: False
-Soviet Union-Japan: False
-UK/ANZAC-Japan: False
-United States-Japan: False
-United States-Germany: False
-Egypt: False
-Seazone125: True
+turn: 1
+phase: Purchase
+country: Germany
+gerBank: 30
+ussrBank: 37
+japBank: 26
+usBank: 52
+ChinaBank: 12
+ukeurBank: 28
+ukpacBank: 17
+itaBank: 10
+anzacBank: 10
+fraBank: 19
+gerTurn: 40
+ussrTurn: 37
+japTurn: 36
+usTurn: 52
+ChinaTurn: 18
+ukeurTurn: 33
+ukpacTurn: 17
+itaTurn: 10
+anzacTurn: 10
+fraTurn: 19
+ussr-ger: False
+ussr-ita: False
+ussr-jap: False
+uk/anzac-jap: False
+us-jap: False
+us-ger: False
+egypt: False
+seazone125: True
 allyussr: False
 Mediterranean: True
-IndoChina: False
+indochina: False
 unprovoked: False
 usfra: False
-Alexandria: United Kingdom Europe/0
-Algeria: France/1
-Anglo-Egyptian Sudan: United Kingdom Europe/1
+Alexandria: ukeur/0
+Algeria: fra/1
+Anglo-Egyptian Sudan: ukeur/1
 Angola: Neutral/1
-Belgian Congo: United Kingdom Europe/1
-British Somaliland: United Kingdom Europe/0
-Egypt: United Kingdom Europe/2
-Ethiopia: Italy/1
-French Central Africa: France/1
-French Equatorial Africa: France/1
-French Madagascar: France/1
-French West Africa: France/1
-Gold Coast: United Kingdom Europe/1
-Italian Somaliland: Italy/0
-Kenya: United Kingdom Europe/1
+Belgian Congo: ukeur/1
+British Somaliland: ukeur/0
+Egypt: ukeur/2
+Ethiopia: ita/1
+French Central Africa: fra/1
+French Equatorial Africa: fra/1
+French Madagascar: fra/1
+French West Africa: fra/1
+Gold Coast: ukeur/1
+Italian Somaliland: ita/0
+Kenya: ukeur/1
 Liberia: Neutral/0
-Libya: Italy/1
-Morocco: France/1
+Libya: ita/1
+Morocco: fra/1
 Mozambique: Neutral/1
-Nigeria: United Kingdom Europe/1
+Nigeria: ukeur/1
 Portuguese Guinea: Neutral/0
-Rhodesia: United Kingdom Europe/1
+Rhodesia: ukeur/1
 Rio de Oro: Neutral/0
 Sierra Leone: Neutral/0
-South West Africa: United Kingdom Europe/1
-Tanganyika Territory: United Kingdom Europe/1
-Tobruk: Italy/1
-Tunisia: France/1
-Union of South Africa: United Kingdom Europe/2
-Borneo: United Kingdom Pacific/4
-Burma: United Kingdom Pacific/1
+South West Africa: ukeur/1
+Tanganyika Territory: ukeur/1
+Tobruk: ita/1
+Tunisia: fra/1
+Union of South Africa: ukeur/2
+Borneo: ukpac/4
+Burma: ukpac/1
 Buyant-Uhaa: Neutral/0
 Celebes: Neutral/3
 Central Mongolia: Neutral/0
-Ceylon: United Kingdom Pacific/0
+Ceylon: ukpac/0
 Dzavhan: Neutral/0
-Formosa: Japan/1
-French Indo China: France/2
-Hainan: Japan/0
-India: United Kingdom Pacific/3
-Japan: Japan/8
+Formosa: jap/1
+French Indo China: fra/2
+Hainan: jap/0
+India: ukpac/3
+jap: jap/8
 Java: Neutral/4
-Korea: Japan/3
-Kwangtung: United Kingdom Pacific/3
-Malaya: United Kingdom Pacific/3
-Okinawa: Japan/1
+Korea: jap/3
+Kwangtung: ukpac/3
+Malaya: ukpac/3
+Okinawa: jap/1
 Olgiy: Neutral/0
-Philippines: United States/2
-Shan State: United Kingdom Pacific/1
-Siam: Japan/1
+Philippines: us/2
+Shan State: ukpac/1
+Siam: jap/1
 Sumatra: Neutral/4
 Tsagaan-Olom: Neutral/0
 Ulaanbaatar: Neutral/0
-West India: United Kingdom Pacific/2
-New South Wales: ANZAC/2
-Northern Territory: ANZAC/1
-Queensland: ANZAC/2
-South Australia: ANZAC/1
-Victoria: ANZAC/1
-Western Australia: ANZAC/1
+West India: ukpac/2
+New South Wales: anzac/2
+Northern Territory: anzac/1
+Queensland: anzac/2
+South Australia: anzac/1
+Victoria: anzac/1
+Western Australia: anzac/1
 Anhwe: China/1
 Chahar: China/1
 Hopei: China/1
 Hunan: China/1
-Jehol: Japan/1
+Jehol: jap/1
 Kansu: China/1
-Kiangsi: Japan/1
-Kiangsu: Japan/3
-Kwangsi: Japan/1
+Kiangsi: jap/1
+Kiangsu: jap/3
+Kwangsi: jap/1
 Kweichow: China/1
-Manchuria: Japan/3
-Shantung: Japan/2
+Manchuria: jap/3
+Shantung: jap/2
 Shensi: China/1
 Sikang: China/1
 Suiyuyan: China/1
 Szechwan: China/1
 Tsinghai: China/1
 Yunnan: China/1
-Albania: Italy/1
+Albania: ita/1
 Bulgaria: Neutral/1
 Crete: Neutral/0
-Cyprus: United Kingdom Europe/0
-Denmark: Germany/2
+Cyprus: ukeur/0
+Denmark: ger/2
 Eire: Neutral/0
 Finland: Neutral/2
-France: France/4
-Germany: Germany/5
-Gibraltar: United Kingdom Europe/0
-Greater Southern Germany: Germany/4
+fra: fra/4
+ger: ger/5
+Gibraltar: ukeur/0
+Greater Southern ger: ger/4
 Greece: Neutral/2
-Holland Belgium: Germany/3
-Iceland: United Kingdom Europe/0
-Malta: United Kingdom Europe/0
-Normandy Bordeaux: France/2
-Northern Italy: Italy/4
-Norway: Germany/3
-Poland: Germany/2
+Holland Belgium: ger/3
+Iceland: ukeur/0
+Malta: ukeur/0
+Normandy Bordeaux: fra/2
+Northern ita: ita/4
+Norway: ger/3
+Poland: ger/2
 Portugal: Neutral/1
-Romania: Germany/3
-Sardinia: Italy/0
-Scotland: United Kingdom Europe/2
-Sicily: Italy/0
-Slovakia Hungary: Germany/3
-Southern France: France/3
-Southern Italy: Italy/3
+Romania: ger/3
+Sardinia: ita/0
+Scotland: ukeur/2
+Sicily: ita/0
+Slovakia Hungary: ger/3
+Southern fra: fra/3
+Southern ita: ita/3
 Spain: Neutral/2
 Sweden: Neutral/3
 Switzerland: Neutral/0
-United Kingdom: United Kingdom Europe/6
-Western Germany: Germany/5
+United Kingdom: ukeur/6
+Western ger: ger/5
 Yugoslavia: Neutral/2
 Middle East/Afghanistan: Neutral/0
 Middle East/Eastern Persia: Neutral/0
@@ -140,214 +151,214 @@ Middle East/Iraq: Neutral/2
 Middle East/Northwest Persia: Neutral/0
 Middle East/Persia: Neutral/2
 Middle East/Saudi Arabia: Neutral/2
-Middle East/Syria: France/1
-Middle East/Trans-Jordan: United Kingdom Europe/1
+Middle East/Syria: fra/1
+Middle East/Trans-Jordan: ukeur/1
 Middle East/Turkey: Neutral/2
-Alaska: United States/2
-Alberta Saskatchewan Manitoba: United Kingdom Europe/1
-Aleutian Islands: United States/0
-Central America: United States/1
-Central USA: United States/12
-Eastern USA: United States/20
-Greenland: United States/0
-Mexico: United States/2
-New Brunswick Nova Scotia: United Kingdom Europe/1
-Newfoundland Labrador: United Kingdom Europe/0
-Ontario: United Kingdom Europe/2
-Quebec: United Kingdom Europe/2
-Southeast Mexico: United States/1
-West Indies: United States/1
-Western USA: United States/10
-Caroline Islands: Japan/0
+Alaska: us/2
+Alberta Saskatchewan Manitoba: ukeur/1
+Aleutian Islands: us/0
+Central America: us/1
+Central USA: us/12
+Eastern USA: us/20
+Greenland: us/0
+Mexico: us/2
+New Brunswick Nova Scotia: ukeur/1
+Newfoundland Labrador: ukeur/0
+Ontario: ukeur/2
+Quebec: ukeur/2
+Southeast Mexico: us/1
+West Indies: us/1
+Western USA: us/10
+Caroline Islands: jap/0
 Dutch New Guinea: Neutral/0
-Fiji: United Kingdom Pacific/0
-Gilbert Islands: United Kingdom Pacific/0
-Guam: United States/0
-Hawaiian Islands: United States/1
-Iwo Jima: Japan/1
-Johnston Island: United States/0
-Line Islands: United States/0
-Marianas: Japan/0
-Marshall Islands: Japan/0
-Midway: United States/0
-New Britain: ANZAC/0
-New Guinea: ANZAC/1
-New Hebrides: France/0
-New Zealand: ANZAC/1
-Palau Island: Japan/0
-Samoa: United Kingdom Pacific/0
-Solomon Islands: ANZAC/0
-Wake Island: United States/0
-Amur: Soviet Union/1
-Archangel: Soviet Union/1
-Baltic States: Soviet Union/1
-Belarus: Soviet Union/1
-Bessarabia: Soviet Union/0
-Bryansk: Soviet Union/1
-Buryatia: Soviet Union/1
-Caucasus: Soviet Union/2
-Eastern Poland: Soviet Union/1
-Evenkiyskiy: Soviet Union/1
-Karelia: Soviet Union/1
-Kazakhstan: Soviet Union/1
-Nenestia: Soviet Union/0
-Novgorod: Soviet Union/2
-Novosibirsk: Soviet Union/1
-Rostov: Soviet Union/2
-Russia: Soviet Union/3
-Sakha: Soviet Union/1
-Samara: Soviet Union/1
-Siberia: Soviet Union/1
-Smolensk: Soviet Union/1
-Soviet Far East: Soviet Union/1
-Tambov: Soviet Union/1
-Timguska: Soviet Union/1
-Turkmenistan: Soviet Union/0
-Ukraine: Soviet Union/2
-Urals: Soviet Union/1
-Volgograd: Soviet Union/2
-Vologda: Soviet Union/1
-Vyborg: Soviet Union/0
-Western Ukraine: Soviet Union/2
-Yakut S.S.R.: Soviet Union/1
-Yenisey: Soviet Union/1
+Fiji: ukpac/0
+Gilbert Islands: ukpac/0
+Guam: us/0
+Hawaiian Islands: us/1
+Iwo Jima: jap/1
+Johnston Island: us/0
+Line Islands: us/0
+Marianas: jap/0
+Marshall Islands: jap/0
+Midway: us/0
+New Britain: anzac/0
+New Guinea: anzac/1
+New Hebrides: fra/0
+New Zealand: anzac/1
+Palau Island: jap/0
+Samoa: ukpac/0
+Solomon Islands: anzac/0
+Wake Island: us/0
+Amur: ussr/1
+Archangel: ussr/1
+Baltic States: ussr/1
+Belarus: ussr/1
+Bessarabia: ussr/0
+Bryansk: ussr/1
+Buryatia: ussr/1
+Caucasus: ussr/2
+Eastern Poland: ussr/1
+Evenkiyskiy: ussr/1
+Karelia: ussr/1
+Kazakhstan: ussr/1
+Nenestia: ussr/0
+Novgorod: ussr/2
+Novosibirsk: ussr/1
+Rostov: ussr/2
+Russia: ussr/3
+Sakha: ussr/1
+Samara: ussr/1
+Siberia: ussr/1
+Smolensk: ussr/1
+Soviet Far East: ussr/1
+Tambov: ussr/1
+Timguska: ussr/1
+Turkmenistan: ussr/0
+Ukraine: ussr/2
+Urals: ussr/1
+Volgograd: ussr/2
+Vologda: ussr/1
+Vyborg: ussr/0
+Western Ukraine: ussr/2
+Yakut S.S.R.: ussr/1
+Yenisey: ussr/1
 Argentina: Neutral/2
 Bolivia: Neutral/0
 Brazil: Neutral/2
-British Guiana: United Kingdom Europe/0
+British Guiana: ukeur/0
 Chile: Neutral/2
 Colombia: Neutral/0
 Ecuador: Neutral/0
-French Guiana: France/0
+French Guiana: fra/0
 Paraguay: Neutral/0
 Peru: Neutral/0
 Suriname: Neutral/0
 Uruguay: Neutral/0
 Venezuela: Neutral/2
-Sea Zone 1:
-Sea Zone 2:
-Sea Zone 3:
-Sea Zone 4:
-Sea Zone 5:
-Sea Zone 6:
-Sea Zone 7:
-Sea Zone 8:
-Sea Zone 9:
-Sea Zone 10:
-Sea Zone 11:
-Sea Zone 12:
-Sea Zone 13:
-Sea Zone 14:
-Sea Zone 15:
-Sea Zone 16:
-Sea Zone 17:
-Sea Zone 18:
-Sea Zone 19:
-Sea Zone 20:
-Sea Zone 21:
-Sea Zone 22:
-Sea Zone 23:
-Sea Zone 24:
-Sea Zone 25:
-Sea Zone 26:
-Sea Zone 27:
-Sea Zone 28:
-Sea Zone 29:
-Sea Zone 30:
-Sea Zone 31:
-Sea Zone 32:
-Sea Zone 33:
-Sea Zone 34:
-Sea Zone 35:
-Sea Zone 36:
-Sea Zone 37:
-Sea Zone 38:
-Sea Zone 39:
-Sea Zone 40:
-Sea Zone 41:
-Sea Zone 42:
-Sea Zone 43:
-Sea Zone 44:
-Sea Zone 45:
-Sea Zone 46:
-Sea Zone 47:
-Sea Zone 48:
-Sea Zone 49:
-Sea Zone 50:
-Sea Zone 51:
-Sea Zone 52:
-Sea Zone 53:
-Sea Zone 54:
-Sea Zone 55:
-Sea Zone 56:
-Sea Zone 57:
-Sea Zone 58:
-Sea Zone 59:
-Sea Zone 60:
-Sea Zone 61:
-Sea Zone 62:
-Sea Zone 63:
-Sea Zone 64:
-Sea Zone 65:
-Sea Zone 66:
-Sea Zone 67:
-Sea Zone 68:
-Sea Zone 69:
-Sea Zone 70:
-Sea Zone 71:
-Sea Zone 72:
-Sea Zone 73:
-Sea Zone 74:
-Sea Zone 75:
-Sea Zone 76:
-Sea Zone 77:
-Sea Zone 78:
-Sea Zone 79:
-Sea Zone 80:
-Sea Zone 81:
-Sea Zone 82:
-Sea Zone 83:
-Sea Zone 84:
-Sea Zone 85:
-Sea Zone 86:
-Sea Zone 87:
-Sea Zone 88:
-Sea Zone 89:
-Sea Zone 90:
-Sea Zone 91:
-Sea Zone 92:
-Sea Zone 93:
-Sea Zone 94:
-Sea Zone 95:
-Sea Zone 96:
-Sea Zone 97:
-Sea Zone 98:
-Sea Zone 99:
-Sea Zone 100:
-Sea Zone 101:
-Sea Zone 102:
-Sea Zone 103:
-Sea Zone 104:
-Sea Zone 105:
-Sea Zone 106:
-Sea Zone 107:
-Sea Zone 108:
-Sea Zone 109:
-Sea Zone 110:
-Sea Zone 111:
-Sea Zone 112:
-Sea Zone 113:
-Sea Zone 114:
-Sea Zone 115:
-Sea Zone 116:
-Sea Zone 117:
-Sea Zone 118:
-Sea Zone 119:
-Sea Zone 120:
-Sea Zone 121:
-Sea Zone 122:
-Sea Zone 123:
-Sea Zone 124:
-Sea Zone 125:
-Sea Zone 126:
-Sea Zone 127:
+Sea Zone 1: None
+Sea Zone 2: None
+Sea Zone 3: None
+Sea Zone 4: None
+Sea Zone 5: None
+Sea Zone 6: None
+Sea Zone 7: None
+Sea Zone 8: None
+Sea Zone 9: None
+Sea Zone 10: None
+Sea Zone 11: None
+Sea Zone 12: None
+Sea Zone 13: None
+Sea Zone 14: None
+Sea Zone 15: None
+Sea Zone 16: None
+Sea Zone 17: None
+Sea Zone 18: None
+Sea Zone 19: None
+Sea Zone 20: None
+Sea Zone 21: None
+Sea Zone 22: None
+Sea Zone 23: None
+Sea Zone 24: None
+Sea Zone 25: None
+Sea Zone 26: None
+Sea Zone 27: None
+Sea Zone 28: None
+Sea Zone 29: None
+Sea Zone 30: None
+Sea Zone 31: None
+Sea Zone 32: None
+Sea Zone 33: None
+Sea Zone 34: None
+Sea Zone 35: None
+Sea Zone 36: None
+Sea Zone 37: None
+Sea Zone 38: None
+Sea Zone 39: None
+Sea Zone 40: None
+Sea Zone 41: None
+Sea Zone 42: None
+Sea Zone 43: None
+Sea Zone 44: None
+Sea Zone 45: None
+Sea Zone 46: None
+Sea Zone 47: None
+Sea Zone 48: None
+Sea Zone 49: None
+Sea Zone 50: None
+Sea Zone 51: None
+Sea Zone 52: None
+Sea Zone 53: None
+Sea Zone 54: None
+Sea Zone 55: None
+Sea Zone 56: None
+Sea Zone 57: None
+Sea Zone 58: None
+Sea Zone 59: None
+Sea Zone 60: None
+Sea Zone 61: None
+Sea Zone 62: None
+Sea Zone 63: None
+Sea Zone 64: None
+Sea Zone 65: None
+Sea Zone 66: None
+Sea Zone 67: None
+Sea Zone 68: None
+Sea Zone 69: None
+Sea Zone 70: None
+Sea Zone 71: None
+Sea Zone 72: None
+Sea Zone 73: None
+Sea Zone 74: None
+Sea Zone 75: None
+Sea Zone 76: None
+Sea Zone 77: None
+Sea Zone 78: None
+Sea Zone 79: None
+Sea Zone 80: None
+Sea Zone 81: None
+Sea Zone 82: None
+Sea Zone 83: None
+Sea Zone 84: None
+Sea Zone 85: None
+Sea Zone 86: None
+Sea Zone 87: None
+Sea Zone 88: None
+Sea Zone 89: None
+Sea Zone 90: None
+Sea Zone 91: None
+Sea Zone 92: None
+Sea Zone 93: None
+Sea Zone 94: None
+Sea Zone 95: None
+Sea Zone 96: None
+Sea Zone 97: None
+Sea Zone 98: None
+Sea Zone 99: None
+Sea Zone 100: None
+Sea Zone 101: None
+Sea Zone 102: None
+Sea Zone 103: None
+Sea Zone 104: None
+Sea Zone 105: None
+Sea Zone 106: None
+Sea Zone 107: None
+Sea Zone 108: None
+Sea Zone 109: None
+Sea Zone 110: None
+Sea Zone 111: None
+Sea Zone 112: None
+Sea Zone 113: None
+Sea Zone 114: None
+Sea Zone 115: None
+Sea Zone 116: None
+Sea Zone 117: None
+Sea Zone 118: None
+Sea Zone 119: None
+Sea Zone 120: None
+Sea Zone 121: None
+Sea Zone 122: None
+Sea Zone 123: None
+Sea Zone 124: None
+Sea Zone 125: None
+Sea Zone 126: None
+Sea Zone 127: None

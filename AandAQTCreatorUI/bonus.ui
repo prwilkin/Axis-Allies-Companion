@@ -261,7 +261,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="seazone125">
         <property name="text">
          <string>Yes</string>
         </property>

@@ -2,7 +2,7 @@ from PySide6.QtCore import QObject, Slot, QUrl
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
-from src.mainBackend import changeOwner
+from src.mainBackend import changeOwner, updateTerritory
 
 
 # svg will be loaded in this webEngineView class
@@ -39,7 +39,7 @@ class MyObject(QObject):
             # open window & get country
             country = changeOwner(territory)
             # TODO: update backend record keeping
-
+            updateTerritory(territory, country)
             # TODO: give color to javascript
             # color =
             # self.sendColorToJavaScript(element_id, color)
@@ -72,7 +72,6 @@ class MyObject(QObject):
         else:
             territory = element_id.split(" 0")
             return True, territory[0]
-
 
     # JS to Py Debug channel for console.log since PyCharm Debugger wont enter java script code
     @Slot(str)
