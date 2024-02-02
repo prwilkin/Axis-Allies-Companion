@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.1, 2024-01-19T00:56:22. -->
+<!-- Written by QtCreator 12.0.1, 2024-01-24T22:36:25. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -148,7 +148,6 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/AandAQTCreator UI/AandAQTCreatorUI/mainwindow.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/AandAQTCreator UI/AandAQTCreatorUI/mainwindow.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{48dacb8a-0814-4010-affc-8af00d6047bb}</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
    </valuemap>

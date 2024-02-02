@@ -10,9 +10,11 @@ from src.svg import svgViewer
 #   pyside6-uic ./AandAQTCreatorUI/mainwindow.ui -o ./AandAQTCreatorUI/ui_mainwindow.py
 #   pyside6-uic ./AandAQTCreatorUI/changecountry.ui -o ./AandAQTCreatorUI/ui_changeCountry.py
 #   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
+#   pyside6-uic ./AandAQTCreatorUI/bonus.ui -o ./AandAQTCreatorUI/ui_bonus.py
 from ui_mainwindow import Ui_MainWindow
 from ui_changeCountry import Ui_changeCountry
 from ui_seazone import Ui_seazone
+from ui_bonus import Ui_Bonus
 
 
 class MainWindow(QMainWindow):
@@ -24,12 +26,12 @@ class MainWindow(QMainWindow):
 
         # button init
         self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
-        self.ui.menuSave.triggered.connect(self)    # TODO: add save functionality
-        self.ui.menuLoad.triggered.connect(self)    # TODO: add load functionality
+        # self.ui.menuSave.triggered.connect(self)    # TODO: add save functionality
+        # self.ui.menuLoad.triggered.connect(self)    # TODO: add load functionality
 
         # Create and add the web browser to the layout
         self.ui.board = QWidget(self.ui.centralwidget)
-        self.ui.board.setObjectName("board")
+        self.ui.board.setObjectName("boards")
         self.ui.board.setGeometry(QRect(15, 121, 789, 421))
         self.ui.browser = svgViewer(self.ui)
         self.ui.boardLayout = QVBoxLayout(self.ui.board)
@@ -39,12 +41,13 @@ class MainWindow(QMainWindow):
     def nextPhase_Click(self):
         print("Next")
         # TODO: change connection
-        self.changeCountryWidget = changeCountryWindow()
-        self.changeCountryWidget.show()
-        self.changeCountryWidget.territory("South Germany")
-        # self.seazoneWidget = seazoneWindow()
-        # self.seazoneWidget.show()
-        # self.seazoneWidget.seazoneNum(125)
+        # self.changeCountryWidget = changeCountryWindow()
+        # self.changeCountryWidget.show()
+        # self.changeCountryWidget.territory("South Germany")
+        self.seazoneWidget = seazoneWindow()
+
+        self.seazoneWidget.show()
+        self.seazoneWidget.seazoneNum(125)
 
 
 class seazoneWindow(QDialog):
@@ -118,6 +121,17 @@ class changeCountryWindow(QDialog):
     def changeCountry_Cancel_Click(self):
         print("Cancel")
         self.close()
+
+
+class bonusWindow(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.bonusUI = Ui_Bonus()
+        self.bonusUI.setupUi(self)
+
+        # buttons
+        self.bonusUI.okButton.clicked.connect(self)     # TODO: connect
+        # TODO: connect check boxes
 
 
 if __name__ == "__main__":

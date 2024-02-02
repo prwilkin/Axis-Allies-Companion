@@ -433,7 +433,7 @@ class Ui_MainWindow(object):
         self.usa.raise_()
         self.ukpac.raise_()
         self.board = QGraphicsView(self.centralwidget)
-        self.board.setObjectName(u"board")
+        self.board.setObjectName(u"boards")
         self.board.setGeometry(QRect(15, 121, 781, 421))
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
