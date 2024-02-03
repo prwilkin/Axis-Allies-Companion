@@ -2,7 +2,7 @@ from PySide6.QtCore import QObject, Slot, QUrl
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
 
-from src.mainBackend import changeOwner, updateTerritory
+from src.mainBackend import changeOwner, updateTerritory, colorPicker
 
 
 # svg will be loaded in this webEngineView class
@@ -38,11 +38,11 @@ class MyObject(QObject):
             print(territory)
             # open window & get country
             country = changeOwner(territory)
-            # TODO: update backend record keeping
+            # update backend record keeping
             updateTerritory(territory, country)
-            # TODO: give color to javascript
-            # color =
-            # self.sendColorToJavaScript(element_id, color)
+            # get color to give to javascript
+            color = colorPicker(country)
+            self.sendColorToJavaScript(element_id, color)
         else:
             return None
 

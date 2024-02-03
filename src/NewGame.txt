@@ -74,7 +74,7 @@ Formosa: jap/1
 French Indo China: fra/2
 Hainan: jap/0
 India: ukpac/3
-jap: jap/8
+Japan: jap/8
 Java: Neutral/4
 Korea: jap/3
 Kwangtung: ukpac/3
@@ -119,16 +119,16 @@ Cyprus: ukeur/0
 Denmark: ger/2
 Eire: Neutral/0
 Finland: Neutral/2
-fra: fra/4
-ger: ger/5
+France: fra/4
+Germany: ger/5
 Gibraltar: ukeur/0
-Greater Southern ger: ger/4
+Greater Southern Germany: ger/4
 Greece: Neutral/2
 Holland Belgium: ger/3
 Iceland: ukeur/0
 Malta: ukeur/0
 Normandy Bordeaux: fra/2
-Northern ita: ita/4
+Northern Italy: ita/4
 Norway: ger/3
 Poland: ger/2
 Portugal: Neutral/1
@@ -137,13 +137,13 @@ Sardinia: ita/0
 Scotland: ukeur/2
 Sicily: ita/0
 Slovakia Hungary: ger/3
-Southern fra: fra/3
-Southern ita: ita/3
+Southern France: fra/3
+Southern Italy: ita/3
 Spain: Neutral/2
 Sweden: Neutral/3
 Switzerland: Neutral/0
 United Kingdom: ukeur/6
-Western ger: ger/5
+Western Germany: ger/5
 Yugoslavia: Neutral/2
 Middle East/Afghanistan: Neutral/0
 Middle East/Eastern Persia: Neutral/0

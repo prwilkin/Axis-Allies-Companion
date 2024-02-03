@@ -1,8 +1,5 @@
-# This is a sample Python script.
+import unittest
 
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 turnNum = 1
 phase = "Purchase"      # Purchase, Combat, Income
 countryTurn = "Germany" # Germany, USSR, Japan, USA, China, UK-Europe, UK-Pacific, Italy, ANZAC, France
@@ -24,20 +21,38 @@ def changeOwner(territory):
 def updateTerritory(territory, newCountry):
     global ipcTable, territoryTable, seazoneTable
     if "Sea Zone" in territory:
-        seazoneTable[territory] = str(newCountry)
+        seazoneTable[territory] = str(newCountry).lower()
         # TODO: seazone changes
     else:
         oldCountry, ipc = territoryTable[territory]
         ipcTable[oldCountry + 'Turn'] -= ipc
         ipcTable[newCountry + 'Turn'] += ipc
-        territoryTable[territory] = newCountry
+        territoryTable[territory] = [str(newCountry).lower(), ipc]
 
 
-def color(country):
-    country = str(country)
+def colorPicker(country):
+    country = str(country).lower()
     if country == "ger":
-        return "green"
-    # TODO: add hex color values
+        return "#626362"
+    elif country == "ussr":
+        return "#BB0000"
+    elif country == "jap":
+        return "#FE4800"
+    elif country == "us":
+        return "#186518"
+    elif country == "china":
+        return "#FE4800"
+    elif country == "ukeur":
+        return "#FAC807"
+    elif country == "ukpac":
+        return "#987906"
+    elif country == "ita":
+        return "#5E4220"
+    elif country == "anzac":
+        return "#5B8684"
+    elif country == "fra":
+        return "#2870BA"
+    # TODO: likely need neutrals
 
 
 def loader(file):
@@ -65,7 +80,7 @@ def loader(file):
             else:
                 seazoneTable.update({territory: lambda: None if info is None else str(info)})
         i += 1
-    return
+    return file.close()
 
 
 def saver(file):
@@ -75,14 +90,7 @@ def saver(file):
     return
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
     loader("NewGame.txt")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
