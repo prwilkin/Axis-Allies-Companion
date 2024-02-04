@@ -37,7 +37,7 @@ usfra: False
 Alexandria: ukeur/0
 Algeria: fra/1
 Anglo-Egyptian Sudan: ukeur/1
-Angola: Neutral/1
+Angola: nue/1
 Belgian Congo: ukeur/1
 British Somaliland: ukeur/0
 Egypt: ukeur/2
@@ -49,15 +49,15 @@ French West Africa: fra/1
 Gold Coast: ukeur/1
 Italian Somaliland: ita/0
 Kenya: ukeur/1
-Liberia: Neutral/0
+Liberia: nue/0
 Libya: ita/1
 Morocco: fra/1
-Mozambique: Neutral/1
+Mozambique: nue/1
 Nigeria: ukeur/1
-Portuguese Guinea: Neutral/0
+Portuguese Guinea: nue/0
 Rhodesia: ukeur/1
-Rio de Oro: Neutral/0
-Sierra Leone: Neutral/0
+Rio de Oro: nue/0
+Sierra Leone: nue/0
 South West Africa: ukeur/1
 Tanganyika Territory: ukeur/1
 Tobruk: ita/1
@@ -65,28 +65,28 @@ Tunisia: fra/1
 Union of South Africa: ukeur/2
 Borneo: ukpac/4
 Burma: ukpac/1
-Buyant-Uhaa: Neutral/0
-Celebes: Neutral/3
-Central Mongolia: Neutral/0
+Buyant-Uhaa: nue/0
+Celebes: nue/3
+Central Mongolia: nue/0
 Ceylon: ukpac/0
-Dzavhan: Neutral/0
+Dzavhan: nue/0
 Formosa: jap/1
 French Indo China: fra/2
 Hainan: jap/0
 India: ukpac/3
 Japan: jap/8
-Java: Neutral/4
+Java: nue/4
 Korea: jap/3
 Kwangtung: ukpac/3
 Malaya: ukpac/3
 Okinawa: jap/1
-Olgiy: Neutral/0
+Olgiy: nue/0
 Philippines: us/2
 Shan State: ukpac/1
 Siam: jap/1
-Sumatra: Neutral/4
-Tsagaan-Olom: Neutral/0
-Ulaanbaatar: Neutral/0
+Sumatra: nue/4
+Tsagaan-Olom: nue/0
+Ulaanbaatar: nue/0
 West India: ukpac/2
 New South Wales: anzac/2
 Northern Territory: anzac/1
@@ -113,17 +113,17 @@ Szechwan: China/1
 Tsinghai: China/1
 Yunnan: China/1
 Albania: ita/1
-Bulgaria: Neutral/1
-Crete: Neutral/0
+Bulgaria: pax/1
+Crete: pal/0
 Cyprus: ukeur/0
 Denmark: ger/2
-Eire: Neutral/0
-Finland: Neutral/2
+Eire: pal/0
+Finland: pax/2
 France: fra/4
 Germany: ger/5
 Gibraltar: ukeur/0
 Greater Southern Germany: ger/4
-Greece: Neutral/2
+Greece: pal/2
 Holland Belgium: ger/3
 Iceland: ukeur/0
 Malta: ukeur/0
@@ -131,7 +131,7 @@ Normandy Bordeaux: fra/2
 Northern Italy: ita/4
 Norway: ger/3
 Poland: ger/2
-Portugal: Neutral/1
+Portugal: nue/1
 Romania: ger/3
 Sardinia: ita/0
 Scotland: ukeur/2
@@ -139,21 +139,21 @@ Sicily: ita/0
 Slovakia Hungary: ger/3
 Southern France: fra/3
 Southern Italy: ita/3
-Spain: Neutral/2
-Sweden: Neutral/3
-Switzerland: Neutral/0
+Spain: nue/2
+Sweden: nue/3
+Switzerland: nue/0
 United Kingdom: ukeur/6
 Western Germany: ger/5
-Yugoslavia: Neutral/2
-Middle East/Afghanistan: Neutral/0
-Middle East/Eastern Persia: Neutral/0
-Middle East/Iraq: Neutral/2
-Middle East/Northwest Persia: Neutral/0
-Middle East/Persia: Neutral/2
-Middle East/Saudi Arabia: Neutral/2
-Middle East/Syria: fra/1
-Middle East/Trans-Jordan: ukeur/1
-Middle East/Turkey: Neutral/2
+Yugoslavia: pal/2
+Afghanistan: nue/0
+Eastern Persia: pal/0
+Iraq: pax/2
+Northwest Persia: pal/0
+Persia: pal/2
+Saudi Arabia: nue/2
+Syria: fra/1
+Trans-Jordan: ukeur/1
+Turkey: nue/2
 Alaska: us/2
 Alberta Saskatchewan Manitoba: ukeur/1
 Aleutian Islands: us/0
@@ -170,7 +170,7 @@ Southeast Mexico: us/1
 West Indies: us/1
 Western USA: us/10
 Caroline Islands: jap/0
-Dutch New Guinea: Neutral/0
+Dutch New Guinea: nue/0
 Fiji: ukpac/0
 Gilbert Islands: ukpac/0
 Guam: us/0
@@ -222,29 +222,29 @@ Vyborg: ussr/0
 Western Ukraine: ussr/2
 Yakut S.S.R.: ussr/1
 Yenisey: ussr/1
-Argentina: Neutral/2
-Bolivia: Neutral/0
-Brazil: Neutral/2
+Argentina: nue/2
+Bolivia: nue/0
+Brazil: pal/2
 British Guiana: ukeur/0
-Chile: Neutral/2
-Colombia: Neutral/0
-Ecuador: Neutral/0
+Chile: nue/2
+Colombia: nue/0
+Ecuador: nue/0
 French Guiana: fra/0
-Paraguay: Neutral/0
-Peru: Neutral/0
-Suriname: Neutral/0
-Uruguay: Neutral/0
-Venezuela: Neutral/2
-Sea Zone 1: None
+Paraguay: nue/0
+Peru: nue/0
+Suriname: nue/0
+Uruguay: nue/0
+Venezuela: nue/2
+Sea Zone 1: nue
 Sea Zone 2: None
 Sea Zone 3: None
 Sea Zone 4: None
 Sea Zone 5: None
-Sea Zone 6: None
+Sea Zone 6: nue
 Sea Zone 7: None
 Sea Zone 8: None
 Sea Zone 9: None
-Sea Zone 10: None
+Sea Zone 10: nue
 Sea Zone 11: None
 Sea Zone 12: None
 Sea Zone 13: None
@@ -253,14 +253,14 @@ Sea Zone 15: None
 Sea Zone 16: None
 Sea Zone 17: None
 Sea Zone 18: None
-Sea Zone 19: None
-Sea Zone 20: None
+Sea Zone 19: nue
+Sea Zone 20: nue
 Sea Zone 21: None
 Sea Zone 22: None
 Sea Zone 23: None
 Sea Zone 24: None
 Sea Zone 25: None
-Sea Zone 26: None
+Sea Zone 26: nue
 Sea Zone 27: None
 Sea Zone 28: None
 Sea Zone 29: None
@@ -269,16 +269,16 @@ Sea Zone 31: None
 Sea Zone 32: None
 Sea Zone 33: None
 Sea Zone 34: None
-Sea Zone 35: None
-Sea Zone 36: None
-Sea Zone 37: None
+Sea Zone 35: nue
+Sea Zone 36: nue
+Sea Zone 37: nue
 Sea Zone 38: None
-Sea Zone 39: None
+Sea Zone 39: nue
 Sea Zone 40: None
-Sea Zone 41: None
-Sea Zone 42: None
-Sea Zone 43: None
-Sea Zone 44: None
+Sea Zone 41: nue
+Sea Zone 42: nue
+Sea Zone 43: nue
+Sea Zone 44: nue
 Sea Zone 45: None
 Sea Zone 46: None
 Sea Zone 47: None
@@ -288,7 +288,7 @@ Sea Zone 50: None
 Sea Zone 51: None
 Sea Zone 52: None
 Sea Zone 53: None
-Sea Zone 54: None
+Sea Zone 54: nue
 Sea Zone 55: None
 Sea Zone 56: None
 Sea Zone 57: None
@@ -296,17 +296,17 @@ Sea Zone 58: None
 Sea Zone 59: None
 Sea Zone 60: None
 Sea Zone 61: None
-Sea Zone 62: None
-Sea Zone 63: None
+Sea Zone 62: nue
+Sea Zone 63: nue
 Sea Zone 64: None
 Sea Zone 65: None
 Sea Zone 66: None
 Sea Zone 67: None
 Sea Zone 68: None
 Sea Zone 69: None
-Sea Zone 70: None
-Sea Zone 71: None
-Sea Zone 72: None
+Sea Zone 70: nue
+Sea Zone 71: nue
+Sea Zone 72: nue
 Sea Zone 73: None
 Sea Zone 74: None
 Sea Zone 75: None
@@ -314,36 +314,36 @@ Sea Zone 76: None
 Sea Zone 77: None
 Sea Zone 78: None
 Sea Zone 79: None
-Sea Zone 80: None
+Sea Zone 80: nue
 Sea Zone 81: None
-Sea Zone 82: None
+Sea Zone 82: nue
 Sea Zone 83: None
 Sea Zone 84: None
-Sea Zone 85: None
+Sea Zone 85: nue
 Sea Zone 86: None
 Sea Zone 87: None
 Sea Zone 88: None
-Sea Zone 89: None
+Sea Zone 89: nue
 Sea Zone 90: None
 Sea Zone 91: None
 Sea Zone 92: None
-Sea Zone 93: None
+Sea Zone 93: nue
 Sea Zone 94: None
 Sea Zone 95: None
 Sea Zone 96: None
-Sea Zone 97: None
-Sea Zone 98: None
-Sea Zone 99: None
+Sea Zone 97: nue
+Sea Zone 98: nue
+Sea Zone 99: nue
 Sea Zone 100: None
-Sea Zone 101: None
+Sea Zone 101: nue
 Sea Zone 102: None
 Sea Zone 103: None
 Sea Zone 104: None
-Sea Zone 105: None
-Sea Zone 106: None
+Sea Zone 105: nue
+Sea Zone 106: nue
 Sea Zone 107: None
 Sea Zone 108: None
-Sea Zone 109: None
+Sea Zone 109: nue
 Sea Zone 110: None
 Sea Zone 111: None
 Sea Zone 112: None
@@ -353,12 +353,12 @@ Sea Zone 115: None
 Sea Zone 116: None
 Sea Zone 117: None
 Sea Zone 118: None
-Sea Zone 119: None
+Sea Zone 119: nue
 Sea Zone 120: None
 Sea Zone 121: None
 Sea Zone 122: None
 Sea Zone 123: None
 Sea Zone 124: None
-Sea Zone 125: None
+Sea Zone 125: nue
 Sea Zone 126: None
 Sea Zone 127: None

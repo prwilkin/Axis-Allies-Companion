@@ -62,9 +62,8 @@ class MyObject(QObject):
                 if int(split[len(split) - 1]) == number:
                     return True, "Sea Zone" + split[len(split) - 1]
 
-        # Convoys in: 1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44
-        # 54, 62, 63, 70, 71, 72, 80, 82, 85, 89, 93, 97, 98, 99, 101, 105
-        # 106, 109, 119, 125
+        # Convoys in: 1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44, 54, 62, 63,
+        # 70, 71, 72, 80, 82, 85, 89, 93, 97, 98, 99, 101, 105, 106, 109, 119, 125
         # contains '_' ignore as its text element
         elif "_" in element_id:
             return False, None

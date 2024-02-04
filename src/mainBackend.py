@@ -1,5 +1,3 @@
-import unittest
-
 turnNum = 1
 phase = "Purchase"      # Purchase, Combat, Income
 countryTurn = "Germany" # Germany, USSR, Japan, USA, China, UK-Europe, UK-Pacific, Italy, ANZAC, France
@@ -8,6 +6,13 @@ bonusTable = {}         # Bonuses name as key, value is Bool*
 territoryTable = {}     # Territory as key, value 0 is string* country controlling & value 1 is ipc int*
 seazoneTable = {}       # Seazone as key, value is string* country or None
 # TODO: fast list for convoys, look up rules
+# TODO: victory cities quick list
+# Reference Table
+# Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
+# Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
+# ussr-ger, USSR & Germany at war; ussr-ita, USSR & Italy at war; ussr-jap, USSR & Japan;
+# uk/anzac-jap, UK/ANZAC & Japan at war; us-jap, US & Japan at war; us-ger, US & Germany at war;
+# egypt, if at least 1 German land unit in Axis controlled Egypt
 
 
 def changeOwner(territory):
@@ -53,6 +58,8 @@ def colorPicker(country):
     elif country == "fra":
         return "#2870BA"
     # TODO: likely need neutrals
+    else:
+        None
 
 
 def loader(file):
@@ -79,6 +86,7 @@ def loader(file):
                 territoryTable.update({territory: [str(country), int(IPC)]})
             else:
                 seazoneTable.update({territory: lambda: None if info is None else str(info)})
+                # TODO: also load into convoy short list
         i += 1
     return file.close()
 
