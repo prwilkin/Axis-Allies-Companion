@@ -76,6 +76,7 @@ def loader(file):
     for line in file:
         if i < 38:  # line 38 begins territory
             key, value = line.split(": ")
+            value = value.strip()
             if i == 1:
                 turnNum = int(value)
             elif i == 2:
@@ -85,7 +86,12 @@ def loader(file):
             elif i <= 23:
                 ipcTable.update({key: int(value)})
             elif i <= 36:
-                bonusTable.update({key: bool(value)})
+                if value == "False":
+                    bonusTable.update({key: False})
+                else:
+                    bonusTable.update({key: True})
+            elif i == 37:
+                bonusTable.update({key: int(value)})
         else:
             territory, info = line.split(": ")
             if i <= 238:    # line 239 is seazone

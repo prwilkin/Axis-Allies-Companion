@@ -1,4 +1,5 @@
-from mainBackend import turnNum, ipcTable, bonusTable, territoryTable, seazoneTable, convoyTable
+from src.mainBackend import bonusTable, territoryTable
+# TODO: refactor all if statments from owner == ("ger" or "ita" or "jap") to if owner in ("ger", "ita", "jap"): cause we are dumb
 
 
 # Germany Bonuses
@@ -27,7 +28,7 @@ def gerBonusCalc():
         owner, x = territoryTable["Norway"]
         if owner == "ger":
             owner, x = territoryTable["Sweden"]
-            if owner == ("ussr" or "us" or "china" or "ukeur" or "ukpac" or "anzac" or "fra" or "pal"):
+            if owner != ("ussr" or "us" or "china" or "ukeur" or "ukpac" or "anzac" or "fra" or "pal"):
                 ipc += 5
     owner, x = territoryTable["Iraq"]
     if owner == "ger":
@@ -90,6 +91,7 @@ def japBonusCalc():
         if stratResourcesAxis():
             ipc += 5
     return ipc
+
 
 def islandAxis():
     islands = ["Guam", "Midway", "Wake Island", "Gilbert Islands", "Solomon Islands"]
