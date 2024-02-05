@@ -30,10 +30,11 @@ us-ger: False
 egypt: False
 seazone125: True
 allyussr: False
-Mediterranean: True
+mediterranean: True
 indochina: False
 unprovoked: False
 usfra: False
+berlin: 0
 Alexandria: ukeur/0
 Algeria: fra/1
 Anglo-Egyptian Sudan: ukeur/1
@@ -158,8 +159,8 @@ Alaska: us/2
 Alberta Saskatchewan Manitoba: ukeur/1
 Aleutian Islands: us/0
 Central America: us/1
-Central USA: us/12
-Eastern USA: us/20
+Central United States: us/12
+Eastern United States: us/20
 Greenland: us/0
 Mexico: us/2
 New Brunswick Nova Scotia: ukeur/1
@@ -168,7 +169,7 @@ Ontario: ukeur/2
 Quebec: ukeur/2
 Southeast Mexico: us/1
 West Indies: us/1
-Western USA: us/10
+Western United States: us/10
 Caroline Islands: jap/0
 Dutch New Guinea: nue/0
 Fiji: ukpac/0

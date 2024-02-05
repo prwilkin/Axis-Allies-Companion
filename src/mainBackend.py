@@ -2,17 +2,23 @@ turnNum = 1
 phase = "Purchase"      # Purchase, Combat, Income
 countryTurn = "Germany" # Germany, USSR, Japan, USA, China, UK-Europe, UK-Pacific, Italy, ANZAC, France
 ipcTable = {}           # IPC by countryBank & countryTurn keys, value is int*
-bonusTable = {}         # Bonuses name as key, value is Bool*
+bonusTable = {}         # Bonuses name as key, value is Bool* or int* (basically all the same)
 territoryTable = {}     # Territory as key, value 0 is string* country controlling & value 1 is ipc int*
 seazoneTable = {}       # Seazone as key, value is string* country or None
-# TODO: fast list for convoys, look up rules
+convoyTable = {}        # Seazone as key, value is string* country
 # TODO: victory cities quick list
-# Reference Table
-# Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
+# TODO: Reference Table
+# Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
 # Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
-# ussr-ger, USSR & Germany at war; ussr-ita, USSR & Italy at war; ussr-jap, USSR & Japan;
+#
+# Bonus Table: ussr-ger, USSR & Germany at war; ussr-ita, USSR & Italy at war; ussr-jap, USSR & Japan;
 # uk/anzac-jap, UK/ANZAC & Japan at war; us-jap, US & Japan at war; us-ger, US & Germany at war;
-# egypt, if at least 1 German land unit in Axis controlled Egypt
+# egypt, if at least 1 German land unit in Axis controlled Egypt; seazone125, Sea Zone 125 free of axis warship
+# allyussr, No allies in original USSR territory; berlin, number of times USSR controls Germany; indochina, Japan hasn't
+# attacked French Indo China; unprovoked, Japan does not attack UK/ANZAC unprovoked; usfra, if at least 1 US land unit
+# in France; mediterranean, Ally warships in the med;
+
+# TODO: convoy logic needs to be added to detect the country
 
 
 def changeOwner(territory):
@@ -30,6 +36,7 @@ def updateTerritory(territory, newCountry):
         # TODO: seazone changes
     else:
         oldCountry, ipc = territoryTable[territory]
+        # TODO: check for turn and war limits with extra functions
         ipcTable[oldCountry + 'Turn'] -= ipc
         ipcTable[newCountry + 'Turn'] += ipc
         territoryTable[territory] = [str(newCountry).lower(), ipc]
@@ -67,7 +74,7 @@ def loader(file):
     global turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable
     i = 1
     for line in file:
-        if i < 37:  # line 37 begins territory
+        if i < 38:  # line 38 begins territory
             key, value = line.split(": ")
             if i == 1:
                 turnNum = int(value)
@@ -81,12 +88,15 @@ def loader(file):
                 bonusTable.update({key: bool(value)})
         else:
             territory, info = line.split(": ")
-            if i <= 237:    # line 238 is seazone
+            if i <= 238:    # line 239 is seazone
                 country, IPC = info.split("/")
                 territoryTable.update({territory: [str(country), int(IPC)]})
             else:
-                seazoneTable.update({territory: lambda: None if info is None else str(info)})
-                # TODO: also load into convoy short list
+                if info is None:
+                    seazoneTable.update({territory: None})
+                else:
+                    seazoneTable.update({territory: str(info)})
+                    convoyTable.update({territory: str(info)})
         i += 1
     return file.close()
 
