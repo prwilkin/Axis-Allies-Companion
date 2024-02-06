@@ -37,8 +37,10 @@ def updateTerritory(territory, newCountry):
     else:
         oldCountry, ipc = territoryTable[territory]
         # TODO: check for turn and war limits with extra functions
-        ipcTable[oldCountry + 'Turn'] -= ipc
-        ipcTable[newCountry + 'Turn'] += ipc
+        if oldCountry not in ("nue", "pal", "pax"):
+            ipcTable[oldCountry + 'Turn'] -= ipc
+        if newCountry not in ("nue", "pal", "pax"):
+            ipcTable[newCountry + 'Turn'] += ipc
         territoryTable[territory] = [str(newCountry).lower(), ipc]
 
 

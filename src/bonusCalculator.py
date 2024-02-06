@@ -1,5 +1,4 @@
 from src.mainBackend import bonusTable, territoryTable
-# TODO: refactor all if statments from owner == ("ger" or "ita" or "jap") to if owner in ("ger", "ita", "jap"): cause we are dumb
 
 
 # Germany Bonuses
@@ -18,7 +17,7 @@ def gerBonusCalc():
         if owner == "ger":
             ipc += 5
         owner, x = territoryTable["Caucasus"]
-        if owner == ("ger" or "ita" or "jap"):
+        if owner in ("ger", "ita", "jap"):
             ipc += 5
     # when at war w/ us & fra   ~this is always the case though? not sure on instruction book format suggest dif
     if bonusTable["egypt"]:
@@ -28,7 +27,7 @@ def gerBonusCalc():
         owner, x = territoryTable["Norway"]
         if owner == "ger":
             owner, x = territoryTable["Sweden"]
-            if owner != ("ussr" or "us" or "china" or "ukeur" or "ukpac" or "anzac" or "fra" or "pal"):
+            if owner not in ("ussr", "us", "china", "ukeur", "ukpac", "anzac", "fra", "pal"):
                 ipc += 5
     owner, x = territoryTable["Iraq"]
     if owner == "ger":
@@ -45,10 +44,10 @@ def gerBonusCalc():
 # USSR Bonuses
 def ussrBonusCalc():
     ipc = 0
-    if bonusTable["ussr-ger"] or bonusTable["ussr-ita"]: # must be at war with ger or ita
+    if bonusTable["ussr-ger"] or bonusTable["ussr-ita"]:    # must be at war with ger or ita
         if bonusTable["seazone125"]:        # seazone125 no axis warship
             owner, x = territoryTable["Archangel"]
-            if bonusTable["allyussr"] and (owner == "ussr"):    # Archangle owned by ussr and no land units in original soviet land
+            if not bonusTable["allyussr"] and (owner == "ussr"):    # Archangle owned by ussr and no land units in original soviet land
                 ipc += 5
         ipc += originalAxis()  # +3 ipc for every ussr owned ger, ita, or pax territory
         berlin()    # first time ussr controls Germany (Berlin)
@@ -72,8 +71,8 @@ def originalAxis():
 def berlin():
     x = bonusTable["berlin"]
     if x < 2:
-        owner, x = territoryTable["Germany"]
-        if (owner == "ger") and (x == 1):
+        owner, y = territoryTable["Germany"]
+        if (owner != "ussr") and (x == 1):
             bonusTable["berlin"] = 2
         elif (owner == "ussr") and (x == 0):
             bonusTable["berlin"] = 1
@@ -98,7 +97,7 @@ def islandAxis():
     allAxis = True
     for island in islands:
         owner, x = territoryTable[island]
-        if owner != ("ger" or "ita" or "jap"):
+        if owner not in ("ger", "ita", "jap"):
             allAxis = False
     return allAxis
 
@@ -108,7 +107,7 @@ def powerCitiesAxis():
     cities = ["India", "New South Wales", "Hawaiian Islands", "Western United States"]
     for territory in cities:
         owner, x = territoryTable[territory]
-        if owner != ("ger" or "ita" or "jap"):
+        if owner in ("ger", "ita", "jap"):
             ipc += 5
     return ipc
 
@@ -118,7 +117,7 @@ def stratResourcesAxis():
     allAxis = True
     for territory in territories:
         owner, x = territoryTable[territory]
-        if owner != ("ger" or "ita" or "jap"):
+        if owner not in ("ger", "ita", "jap"):
             allAxis = False
     return allAxis
 
@@ -142,7 +141,7 @@ def usBonusCalc():
 
 
 def mainlandUS():
-    territories = ["Eastern United States", "Central United States", " Western United States"]
+    territories = ["Eastern United States", "Central United States", "Western United States"]
     allUS = True
     for territory in territories:
         owner, x = territoryTable[territory]
@@ -178,7 +177,7 @@ def chinaBonusCalc():
     allAlly = True
     for territory in territories:
         owner, x = territoryTable[territory]
-        if owner == ("ger" or "ita" or "jap"):
+        if owner in ("ger", "ita", "jap"):
             allAlly = False
     if allAlly:
         ipc += 6
@@ -191,8 +190,8 @@ def ukeurBonusCalc():
     territories = ["Alexandria", "Anglo-Egyptian Sudan", "Belgian Congo", "British Somaliland", "Egypt", "Gold Coast",
                    "Kenya", "Nigeria", "Rhodesia", "South West Africa", "Tanganyika Territory", "Union of South Africa",
                    "Cyprus", "Gibraltar", "Iceland", "Malta", "Scotland", "United Kingdom", "Trans-Jordan",
-                   "Alberta Saskatchewan Manitoba", "Western Canada", "New Brunswick Nova Scotia", "Newfoundland Labrador",
-                   "Ontario", "Quebec", "British Guiana"]
+                   "Alberta Saskatchewan Manitoba", "New Brunswick Nova Scotia", "Newfoundland Labrador", "Ontario",
+                   "Quebec", "British Guiana"]
     allUK = True
     for territory in territories:
         owner, x = territoryTable[territory]
@@ -209,7 +208,7 @@ def ukpacBonusCalc():
     if bonusTable["uk/anzac-jap"]:
         owner, x = territoryTable["Kwangtung"]
         owner2, x = territoryTable["Malaya"]
-        if (owner and owner2) == "ukpac":
+        if "ukpac" == owner and "ukpac" == owner2:
             ipc += 5
     return ipc
 
@@ -232,9 +231,9 @@ def romanAxis():
     allAxis = 0
     for territory in territories:
         owner, x = territoryTable[territory]
-        if owner != ("ger" or "ita" or "jap"):
+        if owner in ("ger", "ita", "jap"):
             allAxis += 1
-    if allAxis <= 3:
+    if allAxis >= 3:
         return True
     else:
         return False
@@ -245,7 +244,7 @@ def africaAxis():
     allAxis = True
     for territory in territories:
         owner, x = territoryTable[territory]
-        if owner != ("ger" or "ita" or "jap"):
+        if owner not in ("ger", "ita", "jap"):
             allAxis = False
     return allAxis
 
@@ -278,7 +277,7 @@ def malayaAlly():
     for territory in territories:
         owner, x = territoryTable[territory]
         if territory == "Malaya":
-            if owner == ("ger" or "ita" or "jap"):
+            if owner in ("ger", "ita", "jap"):
                 return False
         else:
             if owner != "anzac":
@@ -291,7 +290,7 @@ def dutchAlly():
     allAlly = True
     for territory in territories:
         owner, x = territoryTable[territory]
-        if owner == ("ger" or "ita" or "jap" or "nue"):     # Dutch are not playable and thus labeled as nue for simplicity
+        if owner in ("ger", "ita", "jap", "nue"):     # Dutch are not playable and thus labeled as nue for simplicity
             allAlly = False
     return allAlly
 
