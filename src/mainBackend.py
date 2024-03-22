@@ -17,6 +17,9 @@ convoyTable = {}        # Seazone as key, value is string* country
 # allyussr, No allies in original USSR territory; berlin, number of times USSR controls Germany; indochina, Japan hasn't
 # attacked French Indo China; unprovoked, Japan does not attack UK/ANZAC unprovoked; usfra, if at least 1 US land unit
 # in France; mediterranean, Ally warships in the med;
+#
+# Colors: ger, #626362; ussr, #BB0000; jap, #FE4800; us, #186518; china, #FE4800; ukeur, #FAC807; ukpac, #987906;
+# ita, #5E4220; anzac, #5B8684; fra, #2870BA;
 
 # TODO: convoy logic needs to be added to detect the country
 
@@ -68,11 +71,19 @@ def colorPicker(country):
         return "#2870BA"
     # TODO: likely need neutrals
     else:
-        None
+        return None
 
 
-def loader(file):
+# TODO: windows file manager, needs to be connected to the frontend load
+def load():
+    print("Loading data...")
+    # parser(file)
+
+
+# TODO: This is a parser, connect with windows File manager
+def parser(file):
     file = open(file)
+    print("Begin parsing")
     global turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable
     i = 1
     for line in file:
@@ -106,6 +117,7 @@ def loader(file):
                     seazoneTable.update({territory: str(info)})
                     convoyTable.update({territory: str(info)})
         i += 1
+    print("End parsing")
     return file.close()
 
 
@@ -117,6 +129,6 @@ def saver(file):
 
 
 if __name__ == '__main__':
-    loader("NewGame.txt")
+    parser("NewGame.txt")
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

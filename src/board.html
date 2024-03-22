@@ -54,7 +54,6 @@
                 for (var i = 0; i < svgItems.length; i++) {
                     svgItems[i].addEventListener("click", function (event) {
                         console.log("Clicked on element with ID: " + event.target.id);
-                        // TODO: Send the ID to the Python backend
                         new QWebChannel(qt.webChannelTransport, function (channel) {
                             var myObj = channel.objects.myObj;
                             myObj.receiveId(event.target.id);

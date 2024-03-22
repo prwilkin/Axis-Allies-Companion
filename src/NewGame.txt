@@ -5,7 +5,7 @@ gerBank: 30
 ussrBank: 37
 japBank: 26
 usBank: 52
-ChinaBank: 12
+chinaBank: 12
 ukeurBank: 28
 ukpacBank: 17
 itaBank: 10
@@ -15,7 +15,7 @@ gerTurn: 40
 ussrTurn: 37
 japTurn: 36
 usTurn: 52
-ChinaTurn: 18
+chinaTurn: 18
 ukeurTurn: 33
 ukpacTurn: 17
 itaTurn: 10

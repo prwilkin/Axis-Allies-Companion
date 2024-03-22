@@ -433,7 +433,7 @@ class Ui_MainWindow(object):
         self.usa.raise_()
         self.ukpac.raise_()
         self.board = QGraphicsView(self.centralwidget)
-        self.board.setObjectName(u"boards")
+        self.board.setObjectName(u"board")
         self.board.setGeometry(QRect(15, 121, 781, 421))
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
@@ -446,10 +446,10 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.label_2)
 
-        self.label_3 = QLabel(self.verticalLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
+        self.country = QLabel(self.verticalLayoutWidget)
+        self.country.setObjectName(u"country")
 
-        self.verticalLayout_2.addWidget(self.label_3)
+        self.verticalLayout_2.addWidget(self.country)
 
         self.phaseButton = QPushButton(self.verticalLayoutWidget)
         self.phaseButton.setObjectName(u"phaseButton")
@@ -460,7 +460,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 26))
+        self.menubar.setGeometry(QRect(0, 0, 800, 22))
         self.menuSave = QMenu(self.menubar)
         self.menuSave.setObjectName(u"menuSave")
         self.menuLoad = QMenu(self.menubar)
@@ -513,7 +513,7 @@ class Ui_MainWindow(object):
         self.anzac.setText("")
         self.fra.setText("")
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Country:</span></p></body></html>", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">UK-Pac</span></p></body></html>", None))
+        self.country.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">UK-Pac</span></p></body></html>", None))
         self.phaseButton.setText(QCoreApplication.translate("MainWindow", u"Next Phase", None))
         self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"Save", None))
         self.menuLoad.setTitle(QCoreApplication.translate("MainWindow", u"Load", None))

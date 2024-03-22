@@ -172,10 +172,10 @@ class Ui_Bonus(object):
 
         self.horizontalLayout_14.addItem(self.horizontalSpacer_7)
 
-        self.checkBox = QCheckBox(self.verticalLayoutWidget)
-        self.checkBox.setObjectName(u"checkBox")
+        self.seazone125 = QCheckBox(self.verticalLayoutWidget)
+        self.seazone125.setObjectName(u"seazone125")
 
-        self.horizontalLayout_14.addWidget(self.checkBox)
+        self.horizontalLayout_14.addWidget(self.seazone125)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout_14)
@@ -314,7 +314,7 @@ class Ui_Bonus(object):
         self.label_8.setText(QCoreApplication.translate("Bonus", u"German land unit(s) in Egypt:", None))
         self.egypt.setText(QCoreApplication.translate("Bonus", u"Yes", None))
         self.label_14.setText(QCoreApplication.translate("Bonus", u"Sea zone 125 has no axis warship:", None))
-        self.checkBox.setText(QCoreApplication.translate("Bonus", u"Yes", None))
+        self.seazone125.setText(QCoreApplication.translate("Bonus", u"Yes", None))
         self.label_9.setText(QCoreApplication.translate("Bonus", u"Allied unit(s) in original Soviet territories:", None))
         self.allyussr.setText(QCoreApplication.translate("Bonus", u"Yes", None))
         self.label_10.setText(QCoreApplication.translate("Bonus", u"Allied surface warships in the Mediterranean:", None))

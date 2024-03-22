@@ -42,7 +42,7 @@ class MyObject(QObject):
             updateTerritory(territory, country)
             # get color to give to javascript
             color = colorPicker(country)
-            self.sendColorToJavaScript(element_id, color)
+            self.sendColorToJavaScript(territory, color)
         else:
             return None
 
@@ -60,12 +60,14 @@ class MyObject(QObject):
             split = element_id.split(" ")
             for number in self.convoy:
                 if int(split[len(split) - 1]) == number:
-                    return True, "Sea Zone" + split[len(split) - 1]
+                    return True, "Sea Zone " + split[len(split) - 1]
 
         # Convoys in: 1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44, 54, 62, 63,
         # 70, 71, 72, 80, 82, 85, 89, 93, 97, 98, 99, 101, 105, 106, 109, 119, 125
         # contains '_' ignore as its text element
         elif "_" in element_id:
+            return False, None
+        elif "Lines" in element_id:
             return False, None
         # Split at ' 0'
         else:
