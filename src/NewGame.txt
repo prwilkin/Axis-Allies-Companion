@@ -22,8 +22,8 @@ itaTurn: 10
 anzacTurn: 10
 fraTurn: 19
 ussr-ger: False
-ussr-ita: False
 ussr-jap: False
+ussr-ita: False
 uk/anzac-jap: False
 us-jap: False
 us-ger: False

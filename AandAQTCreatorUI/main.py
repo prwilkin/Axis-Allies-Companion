@@ -5,8 +5,8 @@ import sys
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
-from src.mainBackend import load, parser
-from src.header import turnNum, phase, countryTurn,  ipcTable
+from src.mainBackend import nextCountry, load, parser
+from src.header import turnNum, phase, countryTurn, ipcTable
 from src.svg import svgViewer
 from ui_bonus import Ui_Bonus
 from ui_changeCountry import Ui_changeCountry
@@ -51,15 +51,28 @@ class MainWindow(QMainWindow):
 
     def nextPhase_Click(self):
         print("Next")
-        # TODO: change connection
+        import src.header as header
+        if header.phase == "Purchase":
+            # process bonus & add income to bank
+            from src.bonusCalculator import bonusIncomeCalculator
+            bonusIncomeCalculator()
+            header.countryTurn = nextCountry(header.countryTurn)
+            header.phase = "Combat"
+        elif header.phase == "Combat":
+            # TODO: check seazone for convoy
+            header.phase = "Income"
+        elif header.phase == "Income":
+            # show bonus window
+            self.bonusWidget = bonusWindow()
+            self.bonusWidget.show()
+            header.phase = "Purchase"
+        self.displayItems()
         # self.changeCountryWidget = changeCountryWindow()
         # self.changeCountryWidget.show()
         # self.changeCountryWidget.territory("South Germany")
         # self.seazoneWidget = seazoneWindow()
         # self.seazoneWidget.show()
         # self.seazoneWidget.seazoneNum(125)
-        self.bonusWidget = bonusWindow()
-        self.bonusWidget.show()
 
     def displayIPC(self):
         self.ui.gerBank.setText(str(ipcTable["gerBank"]))
@@ -84,10 +97,11 @@ class MainWindow(QMainWindow):
         self.ui.fraTurn.setText(str(ipcTable["fraTurn"]))
 
     def displayItems(self):
-        self.ui.turnNum.display(turnNum)
-        self.ui.phase.setText(str(phase))
+        import src.header as header
+        self.ui.turnNum.display(header.turnNum)
+        self.ui.phase.setText(str(header.phase))
         self.ui.phase.setStyleSheet("qproperty-alignment:AlignCenter; font-size:12pt; font-weight:700")
-        self.ui.country.setText(str(countryTurn))
+        self.ui.country.setText(str(header.countryTurn))
         self.ui.country.setStyleSheet("font-size:11pt; font-weight:700")
 
 
@@ -172,8 +186,45 @@ class bonusWindow(QDialog):
         self.setWindowTitle("Bonuses")
 
         # buttons
-        # self.bonusUI.okButton.clicked.connect(self)     # TODO: connect
-        # TODO: connect check boxes
+        self.bonusUI.okButton.clicked.connect(self.bonus_Ok_Clicked)
+
+    def bonus_Ok_Clicked(self):
+        import src.header as header
+        if self.bonusUI.ussr_ger_war.isChecked() and not header.bonusTable["ussr-ger"]:
+            header.bonusTable["ussr-ger"] = True
+        if self.bonusUI.ussr_jap.isChecked() and not header.bonusTable["ussr-jap"]:
+            header.bonusTable["ussr-jap"] = True
+        if self.bonusUI.ussr_ita.isChecked() and not header.bonusTable["ussr-ita"]:
+            header.bonusTable["ussr-ita"] = True
+        if self.bonusUI.uk_jap.isChecked() and not header.bonusTable["uk/anzac-jap"]:
+            header.bonusTable["uk/anzac-jap"] = True
+        if self.bonusUI.us_jap.isChecked() and not header.bonusTable["us-jap"]:
+            header.bonusTable["us-jap"] = True
+        if self.bonusUI.us_ger.isChecked() and not header.bonusTable["us-ger"]:
+            header.bonusTable["us-ger"] = True
+        if self.bonusUI.egypt.isChecked():
+            header.bonusTable["egypt"] = True
+        else:
+            header.bonusTable["egypt"] = False
+        if self.bonusUI.seazone125.isChecked():
+            header.bonusTable["seazone125"] = True
+        else:
+            header.bonusTable["seazone125"] = False
+        if self.bonusUI.allyussr.isChecked():
+            header.bonusTable["allyussr"] = True
+        else:
+            header.bonusTable["allyussr"] = False
+        if self.bonusUI.mediterranean.isChecked():
+            header.bonusTable["mediterranean"] = True
+        else:
+            header.bonusTable["mediterranean"] = False
+        if self.bonusUI.indochina.isChecked() and not header.bonusTable["indochina"]:
+            header.bonusTable["indochina"] = True
+        if self.bonusUI.unprovoked.isChecked() and not header.bonusTable["unprovoked"]:
+            header.bonusTable["unprovoked"] = True
+        if self.bonusUI.usfra.isChecked() and not header.bonusTable["usfra"]:
+            header.bonusTable["usfra"] = True
+        self.close()
 
 
 def start():

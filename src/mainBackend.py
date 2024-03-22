@@ -4,7 +4,7 @@ from src.header import turnNum, phase, countryTurn, ipcTable, bonusTable, territ
 # Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
 # Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
 #
-# Bonus Table: ussr-ger, USSR & Germany at war; ussr-ita, USSR & Italy at war; ussr-jap, USSR & Japan;
+# Bonus Table: ussr-ger, USSR & Germany at war; ussr-jap, USSR & Japan; ussr-ita, USSR & Italy at war;
 # uk/anzac-jap, UK/ANZAC & Japan at war; us-jap, US & Japan at war; us-ger, US & Germany at war;
 # egypt, if at least 1 German land unit in Axis controlled Egypt; seazone125, Sea Zone 125 free of axis warship
 # allyussr, No allies in original USSR territory; berlin, number of times USSR controls Germany; indochina, Japan hasn't

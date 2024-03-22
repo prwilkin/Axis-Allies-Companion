@@ -1,4 +1,30 @@
-from src.header import bonusTable, territoryTable
+from src.header import bonusTable, territoryTable, countryTurn, ipcTable
+
+
+# Bonus Calc Main
+def bonusIncomeCalculator():
+    if countryTurn == "Germany":
+        ipcTable["gerBank"] = ipcTable["gerTurn"] + gerBonusCalc()
+    elif countryTurn == "USSR":
+        ipcTable["ussrBank"] += ipcTable["ussrTurn"] + ussrBonusCalc()
+    elif countryTurn == "Japan":
+        ipcTable["japBank"] += ipcTable["japTurn"] + japBonusCalc()
+    elif countryTurn == "USA":
+        ipcTable["usBank"] += ipcTable["usTurn"] + usBonusCalc()
+    elif countryTurn == "China":
+        ipcTable["chinaBank"] += ipcTable["chinaTurn"] + chinaBonusCalc()
+    elif countryTurn == "UK-Eur":
+        ipcTable["ukeurBank"] += ipcTable["ukeurTurn"] + ukeurBonusCalc()
+    elif countryTurn == "UK-Pac":
+        ipcTable["ukpacBank"] += ipcTable["ukpacTurn"] + ukpacBonusCalc()
+    elif countryTurn == "Italy":
+        ipcTable["itaBank"] += ipcTable["itaTurn"] + itaBonusCalc()
+    elif countryTurn == "ANZAC":
+        ipcTable["anzacBank"] += ipcTable["anzacTurn"] + anzacBonusCalc()
+    elif countryTurn == "France":
+        ipcTable["fraBank"] += ipcTable["fraTurn"]
+    else:
+        return None
 
 
 # Germany Bonuses
