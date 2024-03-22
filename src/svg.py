@@ -2,7 +2,6 @@ from PySide6.QtCore import QObject, Slot, QUrl
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
 import os
-from pathlib import Path
 
 from src.mainBackend import changeOwner, updateTerritory, colorPicker
 
@@ -28,6 +27,7 @@ class MyObject(QObject):
     def __init__(self):
         print("MyObject init")
         super().__init__()
+        self.mainWindow = None
         self.convoy = [1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44,
                         54, 62, 63, 70, 71, 72, 80, 82, 85, 89, 93, 97, 98,
                         99, 101, 105, 106, 109, 119, 125]
@@ -46,6 +46,12 @@ class MyObject(QObject):
             # get color to give to javascript
             color = colorPicker(country)
             self.sendColorToJavaScript(territory, color)
+            # update display
+            if self.mainWindow is None:
+                print("None ID")
+                import src.header as head
+                self.mainWindow = head.mainWin
+            self.mainWindow.displayIPC()
         else:
             return None
 
@@ -54,9 +60,12 @@ class MyObject(QObject):
     def sendColorToJavaScript(self, groupName, color):
         print("Send Js")
         script = f"applyColorToGroup('{groupName}', '{color}');"
-        from AandAQTCreatorUI.main import MainWindow
-        main = MainWindow.get_instance()
-        main.ui.browser.page().runJavaScript(script)
+        if self.mainWindow is None:
+            print("None Color")
+            import src.header as head
+            self.mainWindow = head.mainWin
+        print(script)
+        self.mainWindow.ui.browser.page().runJavaScript(script)
 
     # cut id into a group id and filter non-eligible out
     def processId(self, element_id):

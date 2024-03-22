@@ -34,7 +34,6 @@ def changeOwner(territory):
 
 def updateTerritory(territory, newCountry):
     global ipcTable, territoryTable, seazoneTable
-    from AandAQTCreatorUI.main import MainWindow
     if "Sea Zone" in territory:
         seazoneTable[territory] = str(newCountry).lower()
         # TODO: seazone changes
@@ -46,9 +45,7 @@ def updateTerritory(territory, newCountry):
         if newCountry not in ("nue", "pal", "pax"):
             ipcTable[newCountry + 'Turn'] += ipc
         territoryTable[territory] = [str(newCountry).lower(), ipc]
-    print("Updated Territory")
-    main = MainWindow.get_instance()
-    main.displayIPC()
+    # print("Updated Territory")
 
 
 def colorPicker(country):

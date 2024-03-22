@@ -1,10 +1,14 @@
 # This Python file uses the following encoding: utf-8
-import sys, os
+import os
+import sys
 
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
+from src.mainBackend import load, parser, ipcTable
 from src.svg import svgViewer
+from ui_bonus import Ui_Bonus
+from ui_changeCountry import Ui_changeCountry
 # Important:
 # You need to run the following command to generate the ui_****.py file
 #   pyside6-uic ./AandAQTCreatorUI/mainwindow.ui -o ./AandAQTCreatorUI/ui_mainwindow.py
@@ -12,48 +16,36 @@ from src.svg import svgViewer
 #   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
 #   pyside6-uic ./AandAQTCreatorUI/bonus.ui -o ./AandAQTCreatorUI/ui_bonus.py
 from ui_mainwindow import Ui_MainWindow
-from ui_changeCountry import Ui_changeCountry
 from ui_seazone import Ui_seazone
-from ui_bonus import Ui_Bonus
-from src.mainBackend import load, parser, ipcTable
 
 
 class MainWindow(QMainWindow):
-    _instance = None
 
-    def __init__(self, parent=None):
-        super(MainWindow, self).__init__(parent)
-        if not hasattr(self, '_initialized'):  # Prevents reinitialization
-            self._initialized = True
-            self.ui = Ui_MainWindow()
-            self.ui.setupUi(self)
-            self.setWindowTitle("Axis and Allies 1940 2nd Edition Companion")
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.setWindowTitle("Axis and Allies 1940 2nd Edition Companion")
 
-            os.chdir("..")
-            parser(os.path.abspath(os.curdir) + "/src/NewGame.txt")
+        os.chdir("..")
+        parser(os.path.abspath(os.curdir) + "/src/NewGame.txt")
 
-            # button init
-            self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
-            # self.ui.menuSave.triggered.connect()    # TODO: add save functionality
-            self.ui.menuLoad.triggered.connect(load())    # TODO: add load functionality
+        # button init
+        self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
+        # self.ui.menuSave.triggered.connect()    # TODO: add save functionality
+        self.ui.menuLoad.triggered.connect(load())    # TODO: add load functionality
 
-            # Create and add the web browser to the layout
-            self.ui.board = QWidget(self.ui.centralwidget)
-            self.ui.board.setObjectName("boards")
-            self.ui.board.setGeometry(QRect(15, 121, 789, 421))
-            self.ui.browser = svgViewer()
-            self.ui.boardLayout = QVBoxLayout(self.ui.board)
-            self.ui.boardLayout.addWidget(self.ui.browser)
-            self.ui.board.setLayout(self.ui.boardLayout)
+        # Create and add the web browser to the layout
+        self.ui.board = QWidget(self.ui.centralwidget)
+        self.ui.board.setObjectName("boards")
+        self.ui.board.setGeometry(QRect(15, 121, 789, 421))
+        self.ui.browser = svgViewer()
+        self.ui.boardLayout = QVBoxLayout(self.ui.board)
+        self.ui.boardLayout.addWidget(self.ui.browser)
+        self.ui.board.setLayout(self.ui.boardLayout)
 
-            os.chdir("./AandAQTCreatorUI")
-            self.displayIPC()
-
-    @classmethod
-    def get_instance(cls):
-        if cls._instance is None:
-            cls._instance = cls()
-        return cls._instance
+        os.chdir("./AandAQTCreatorUI")
+        self.displayIPC()
 
     def nextPhase_Click(self):
         print("Next")
@@ -177,8 +169,9 @@ class bonusWindow(QDialog):
 
 def start():
     app = QApplication(sys.argv)
-    main = MainWindow.get_instance()
-    main.show()
+    import src.header as header
+    header.mainWin = MainWindow()
+    header.mainWin.show()
     sys.exit(app.exec())
 
 

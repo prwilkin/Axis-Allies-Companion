@@ -1,0 +1,2 @@
+mainWin = None
+
