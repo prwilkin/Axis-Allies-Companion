@@ -1,11 +1,13 @@
 import unittest
 from src.mainBackend import updateTerritory, colorPicker, parser
 from src.mainBackend import ipcTable, territoryTable
+import os
 
 
 class MyTestCase(unittest.TestCase):
     def test_updateTerritory(self):
-        parser("C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/NewGame.txt")
+        os.chdir("..")
+        parser(os.path.abspath(os.curdir) + "/src/NewGame.txt")
         updateTerritory("Poland", "ita")
         self.assertEqual(12, ipcTable["itaTurn"], msg="Italy Turn IPC is not 12 = didn't add")
         self.assertEqual(38, ipcTable["gerTurn"], msg="Germany Turn IPC is not 38 = didnt subtract")
@@ -19,7 +21,8 @@ class MyTestCase(unittest.TestCase):
         # TODO: test seazone func
 
     def test_colorPicker(self):
-        parser("C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/NewGame.txt")
+        os.chdir("..")
+        parser(os.path.abspath(os.curdir) + "/src/NewGame.txt")
         result = colorPicker("ita")
         self.assertEqual("#5E4220", result, msg="Ideal circumstances = wrong color")
         result = colorPicker("GER")

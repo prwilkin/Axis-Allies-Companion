@@ -34,6 +34,7 @@ def changeOwner(territory):
 
 def updateTerritory(territory, newCountry):
     global ipcTable, territoryTable, seazoneTable
+    from AandAQTCreatorUI.main import MainWindow
     if "Sea Zone" in territory:
         seazoneTable[territory] = str(newCountry).lower()
         # TODO: seazone changes
@@ -45,6 +46,9 @@ def updateTerritory(territory, newCountry):
         if newCountry not in ("nue", "pal", "pax"):
             ipcTable[newCountry + 'Turn'] += ipc
         territoryTable[territory] = [str(newCountry).lower(), ipc]
+    print("Updated Territory")
+    main = MainWindow.get_instance()
+    main.displayIPC()
 
 
 def colorPicker(country):
@@ -83,7 +87,7 @@ def load():
 # TODO: This is a parser, connect with windows File manager
 def parser(file):
     file = open(file)
-    print("Begin parsing")
+    # print("Begin parsing")
     global turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable
     i = 1
     for line in file:
@@ -117,7 +121,7 @@ def parser(file):
                     seazoneTable.update({territory: str(info)})
                     convoyTable.update({territory: str(info)})
         i += 1
-    print("End parsing")
+    # print("End parsing")
     return file.close()
 
 

@@ -1,5 +1,5 @@
 # This Python file uses the following encoding: utf-8
-import sys
+import sys, os
 
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
@@ -19,28 +19,41 @@ from src.mainBackend import load, parser, ipcTable
 
 
 class MainWindow(QMainWindow):
+    _instance = None
+
     def __init__(self, parent=None):
-        super().__init__(parent)
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self)
-        self.setWindowTitle("Axis and Allies 1940 2nd Edition Companion")
-        parser("C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/NewGame.txt")
+        super(MainWindow, self).__init__(parent)
+        if not hasattr(self, '_initialized'):  # Prevents reinitialization
+            self._initialized = True
+            self.ui = Ui_MainWindow()
+            self.ui.setupUi(self)
+            self.setWindowTitle("Axis and Allies 1940 2nd Edition Companion")
 
-        # button init
-        self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
-        # self.ui.menuSave.triggered.connect()    # TODO: add save functionality
-        self.ui.menuLoad.triggered.connect(load())    # TODO: add load functionality
+            os.chdir("..")
+            parser(os.path.abspath(os.curdir) + "/src/NewGame.txt")
 
-        # Create and add the web browser to the layout
-        self.ui.board = QWidget(self.ui.centralwidget)
-        self.ui.board.setObjectName("boards")
-        self.ui.board.setGeometry(QRect(15, 121, 789, 421))
-        self.ui.browser = svgViewer(self.ui)
-        self.ui.boardLayout = QVBoxLayout(self.ui.board)
-        self.ui.boardLayout.addWidget(self.ui.browser)
-        self.ui.board.setLayout(self.ui.boardLayout)
+            # button init
+            self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
+            # self.ui.menuSave.triggered.connect()    # TODO: add save functionality
+            self.ui.menuLoad.triggered.connect(load())    # TODO: add load functionality
 
-        self.displayIPC()
+            # Create and add the web browser to the layout
+            self.ui.board = QWidget(self.ui.centralwidget)
+            self.ui.board.setObjectName("boards")
+            self.ui.board.setGeometry(QRect(15, 121, 789, 421))
+            self.ui.browser = svgViewer()
+            self.ui.boardLayout = QVBoxLayout(self.ui.board)
+            self.ui.boardLayout.addWidget(self.ui.browser)
+            self.ui.board.setLayout(self.ui.boardLayout)
+
+            os.chdir("./AandAQTCreatorUI")
+            self.displayIPC()
+
+    @classmethod
+    def get_instance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def nextPhase_Click(self):
         print("Next")
@@ -55,7 +68,6 @@ class MainWindow(QMainWindow):
         self.bonusWidget.show()
 
     def displayIPC(self):
-        print("Display")
         self.ui.gerBank.setText(str(ipcTable["gerBank"]))
         self.ui.gerTurn.setText(str(ipcTable["gerTurn"]))
         self.ui.ussrBank.setText(str(ipcTable["ussrBank"]))
@@ -163,8 +175,12 @@ class bonusWindow(QDialog):
         # TODO: connect check boxes
 
 
-if __name__ == "__main__":
+def start():
     app = QApplication(sys.argv)
-    main = MainWindow()
+    main = MainWindow.get_instance()
     main.show()
     sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    start()

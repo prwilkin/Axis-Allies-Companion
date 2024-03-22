@@ -1,30 +1,33 @@
 from PySide6.QtCore import QObject, Slot, QUrl
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineWidgets import QWebEngineView
+import os
+from pathlib import Path
 
 from src.mainBackend import changeOwner, updateTerritory, colorPicker
 
 
 # svg will be loaded in this webEngineView class
 class svgViewer(QWebEngineView):
-    def __init__(self, mainWindowUI):
+    def __init__(self):
+        print("svg View init")
         super(svgViewer, self).__init__()
 
         # Set up QWebChannel: allows flow between Py app and JS window
         self.channel = QWebChannel()
-        self.myObject = MyObject(mainWindowUI)
+        self.myObject = MyObject()
         self.channel.registerObject('myObj', self.myObject)
         self.page().setWebChannel(self.channel)
 
         # load SVG and HTML
-        self.load(QUrl.fromLocalFile('C:/Users/patri/Documents/GIT Repos/Axis-Allies-Companion/src/board.html'))
+        self.load(QUrl.fromLocalFile(os.path.abspath(os.curdir) + '/src/board.html'))
 
 
 # This class is the tool for communicating between Py and JS
 class MyObject(QObject):
-    def __init__(self, mainWindowUI):
+    def __init__(self):
+        print("MyObject init")
         super().__init__()
-        self.mainWindowUI = mainWindowUI
         self.convoy = [1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44,
                         54, 62, 63, 70, 71, 72, 80, 82, 85, 89, 93, 97, 98,
                         99, 101, 105, 106, 109, 119, 125]
@@ -51,7 +54,9 @@ class MyObject(QObject):
     def sendColorToJavaScript(self, groupName, color):
         print("Send Js")
         script = f"applyColorToGroup('{groupName}', '{color}');"
-        self.mainWindowUI.browser.page().runJavaScript(script)
+        from AandAQTCreatorUI.main import MainWindow
+        main = MainWindow.get_instance()
+        main.ui.browser.page().runJavaScript(script)
 
     # cut id into a group id and filter non-eligible out
     def processId(self, element_id):
