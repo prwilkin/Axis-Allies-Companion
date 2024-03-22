@@ -20,4 +20,4 @@ convoyTable = {}        # Seazone as key, value is string* country
 # in France; mediterranean, Ally warships in the med;
 #
 # Colors: ger, #626362; ussr, #BB0000; jap, #FE4800; us, #186518; china, #FE4800; ukeur, #FAC807; ukpac, #987906;
-# ita, #5E4220; anzac, #5B8684; fra, #2870BA;
+# ita, #5E4220; anzac, #5B8684; fra, #2870BA; nue, #D1B883; pal, #FEEDC7; pax, #978762; seanue, #d9d9d9;

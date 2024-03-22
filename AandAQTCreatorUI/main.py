@@ -6,7 +6,7 @@ from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
 from src.mainBackend import load, parser
-from src.header import ipcTable
+from src.header import turnNum, phase, countryTurn,  ipcTable
 from src.svg import svgViewer
 from ui_bonus import Ui_Bonus
 from ui_changeCountry import Ui_changeCountry
@@ -47,6 +47,7 @@ class MainWindow(QMainWindow):
 
         os.chdir("./AandAQTCreatorUI")
         self.displayIPC()
+        self.displayItems()
 
     def nextPhase_Click(self):
         print("Next")
@@ -81,6 +82,13 @@ class MainWindow(QMainWindow):
         self.ui.anzacTurn.setText(str(ipcTable["anzacTurn"]))
         self.ui.fraBank.setText(str(ipcTable["fraBank"]))
         self.ui.fraTurn.setText(str(ipcTable["fraTurn"]))
+
+    def displayItems(self):
+        self.ui.turnNum.display(turnNum)
+        self.ui.phase.setText(str(phase))
+        self.ui.phase.setStyleSheet("qproperty-alignment:AlignCenter; font-size:12pt; font-weight:700")
+        self.ui.country.setText(str(countryTurn))
+        self.ui.country.setStyleSheet("font-size:11pt; font-weight:700")
 
 
 class seazoneWindow(QDialog):

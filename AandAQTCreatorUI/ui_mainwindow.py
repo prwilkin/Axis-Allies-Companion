@@ -142,27 +142,6 @@ class Ui_MainWindow(object):
         self.ipc = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.ipc.setObjectName(u"ipc")
         self.ipc.setContentsMargins(0, 0, 0, 0)
-        self.ussrIPC = QVBoxLayout()
-        self.ussrIPC.setObjectName(u"ussrIPC")
-        self.ussrTurn = QLabel(self.horizontalLayoutWidget_2)
-        self.ussrTurn.setObjectName(u"ussrTurn")
-        self.ussrTurn.setAlignment(Qt.AlignCenter)
-
-        self.ussrIPC.addWidget(self.ussrTurn)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.ussrIPC.addItem(self.verticalSpacer)
-
-        self.ussrBank = QLabel(self.horizontalLayoutWidget_2)
-        self.ussrBank.setObjectName(u"ussrBank")
-        self.ussrBank.setAlignment(Qt.AlignCenter)
-
-        self.ussrIPC.addWidget(self.ussrBank)
-
-
-        self.ipc.addLayout(self.ussrIPC)
-
         self.gerIPC = QVBoxLayout()
         self.gerIPC.setObjectName(u"gerIPC")
         self.gerTurn = QLabel(self.horizontalLayoutWidget_2)
@@ -183,6 +162,27 @@ class Ui_MainWindow(object):
 
 
         self.ipc.addLayout(self.gerIPC)
+
+        self.ussrIPC = QVBoxLayout()
+        self.ussrIPC.setObjectName(u"ussrIPC")
+        self.ussrTurn = QLabel(self.horizontalLayoutWidget_2)
+        self.ussrTurn.setObjectName(u"ussrTurn")
+        self.ussrTurn.setAlignment(Qt.AlignCenter)
+
+        self.ussrIPC.addWidget(self.ussrTurn)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.ussrIPC.addItem(self.verticalSpacer)
+
+        self.ussrBank = QLabel(self.horizontalLayoutWidget_2)
+        self.ussrBank.setObjectName(u"ussrBank")
+        self.ussrBank.setAlignment(Qt.AlignCenter)
+
+        self.ussrIPC.addWidget(self.ussrBank)
+
+
+        self.ipc.addLayout(self.ussrIPC)
 
         self.japIPC = QVBoxLayout()
         self.japIPC.setObjectName(u"japIPC")
@@ -460,7 +460,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
+        self.menubar.setGeometry(QRect(0, 0, 800, 26))
         self.menuSave = QMenu(self.menubar)
         self.menuSave.setObjectName(u"menuSave")
         self.menuLoad = QMenu(self.menubar)
@@ -482,10 +482,10 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Turn:</span></p></body></html>", None))
         self.phase.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">Combat Phase</span></p></body></html>", None))
-        self.ussrTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
-        self.ussrBank.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.gerTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.gerBank.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
+        self.ussrTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
+        self.ussrBank.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.japTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.japBank.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
         self.usaTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))

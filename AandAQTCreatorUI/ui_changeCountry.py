@@ -23,14 +23,14 @@ class Ui_changeCountry(object):
     def setupUi(self, changeCountry):
         if not changeCountry.objectName():
             changeCountry.setObjectName(u"changeCountry")
-        changeCountry.resize(320, 417)
+        changeCountry.resize(320, 472)
         changeCountry.setStyleSheet(u"background: rgb(207, 207, 207)")
         self.label = QLabel(changeCountry)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(10, 10, 301, 31))
         self.verticalLayoutWidget = QWidget(changeCountry)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(70, 40, 160, 332))
+        self.verticalLayoutWidget.setGeometry(QRect(70, 40, 160, 363))
         self.buttons = QVBoxLayout(self.verticalLayoutWidget)
         self.buttons.setObjectName(u"buttons")
         self.buttons.setContentsMargins(0, 0, 0, 0)
@@ -90,9 +90,14 @@ class Ui_changeCountry(object):
 
         self.buttons.addWidget(self.ita)
 
+        self.nue = QRadioButton(self.verticalLayoutWidget)
+        self.nue.setObjectName(u"nue")
+
+        self.buttons.addWidget(self.nue)
+
         self.horizontalLayoutWidget = QWidget(changeCountry)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(110, 380, 195, 31))
+        self.horizontalLayoutWidget.setGeometry(QRect(110, 430, 195, 31))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -130,6 +135,7 @@ class Ui_changeCountry(object):
         self.ger.setText(QCoreApplication.translate("changeCountry", u"Germany", None))
         self.jap.setText(QCoreApplication.translate("changeCountry", u"Japan", None))
         self.ita.setText(QCoreApplication.translate("changeCountry", u"Italy", None))
+        self.nue.setText(QCoreApplication.translate("changeCountry", u"Neutral", None))
         self.okButton.setText(QCoreApplication.translate("changeCountry", u"Confirm", None))
         self.cancelButton.setText(QCoreApplication.translate("changeCountry", u"Cancel", None))
     # retranslateUi

@@ -12,7 +12,7 @@ from src.header import turnNum, phase, countryTurn, ipcTable, bonusTable, territ
 # in France; mediterranean, Ally warships in the med;
 #
 # Colors: ger, #626362; ussr, #BB0000; jap, #FE4800; us, #186518; china, #FE4800; ukeur, #FAC807; ukpac, #987906;
-# ita, #5E4220; anzac, #5B8684; fra, #2870BA;
+# ita, #5E4220; anzac, #5B8684; fra, #2870BA; nue, #D1B883; pal, #FEEDC7; pax, #978762; seanue, #d9d9d9;
 
 # TODO: convoy logic needs to be added to detect the country
 
@@ -26,7 +26,6 @@ def changeOwner(territory):
 
 
 def updateTerritory(territory, newCountry):
-    global ipcTable, territoryTable, seazoneTable
     if "Sea Zone" in territory:
         seazoneTable[territory] = str(newCountry).lower()
         # TODO: seazone changes
@@ -63,10 +62,46 @@ def colorPicker(country):
         return "#5B8684"
     elif country == "fra":
         return "#2870BA"
-    # TODO: likely need neutrals
+    elif country == "nue":
+        return "#D1B883"
+    elif country == "pal":
+        return "#FEEDC7"
+    elif country == "pax":
+        return "#978762"
+    elif country == "seanue":
+        return '#d9d9d9'
     else:
         return None
 
+
+def nextCountry(country):
+    if country == "Germany":
+        return "USSR"
+    elif country == "USSR":
+        return "Japan"
+    elif country == "Japan":
+        return "USA"
+    elif country == "USA":
+        return "China"
+    elif country == "China":
+        return "UK-Eur"
+    elif country == "UK-Eur":
+        return "UK-Pac"
+    elif country == "UK-Pac":
+        return "UK-Pac"
+    elif country == "Italy":
+        return "Italy"
+    elif country == "ANZAC":
+        return "ANZAC"
+    elif country == "France":
+        return "Germany"
+    else:
+        return None
+
+
+def nextTurn():
+    # TODO
+    return
 
 # TODO: windows file manager, needs to be connected to the frontend load
 def load():

@@ -9,7 +9,7 @@ from src.mainBackend import changeOwner, updateTerritory, colorPicker
 # svg will be loaded in this webEngineView class
 class svgViewer(QWebEngineView):
     def __init__(self):
-        print("svg View init")
+        # print("svg View init")
         super(svgViewer, self).__init__()
 
         # Set up QWebChannel: allows flow between Py app and JS window
@@ -25,7 +25,7 @@ class svgViewer(QWebEngineView):
 # This class is the tool for communicating between Py and JS
 class MyObject(QObject):
     def __init__(self):
-        print("MyObject init")
+        # print("MyObject init")
         super().__init__()
         self.mainWindow = None
         self.convoy = [1, 6, 10, 19, 20, 26, 35, 36, 37, 39, 41, 42, 43, 44,
@@ -38,7 +38,7 @@ class MyObject(QObject):
         print("Clicked on element with ID:", element_id)
         status, territory = self.processId(element_id)
         if status:
-            print(territory)
+            # print(territory)
             # open window & get country
             country = changeOwner(territory)
             # update backend record keeping
@@ -48,23 +48,24 @@ class MyObject(QObject):
             self.sendColorToJavaScript(territory, color)
             # update display
             if self.mainWindow is None:
-                print("None ID")
+                # print("None ID")
                 import src.header as head
                 self.mainWindow = head.mainWin
             self.mainWindow.displayIPC()
+            self.mainWindow.update()
         else:
             return None
 
     # Py to JS function to call with group name and color
     @Slot(str, str)
     def sendColorToJavaScript(self, groupName, color):
-        print("Send Js")
+        # print("Send Js")
         script = f"applyColorToGroup('{groupName}', '{color}');"
         if self.mainWindow is None:
-            print("None Color")
+            # print("None Color")
             import src.header as head
             self.mainWindow = head.mainWin
-        print(script)
+        # print(script)
         self.mainWindow.ui.browser.page().runJavaScript(script)
 
     # cut id into a group id and filter non-eligible out
