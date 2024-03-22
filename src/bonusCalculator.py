@@ -1,4 +1,4 @@
-from src.mainBackend import bonusTable, territoryTable
+from src.header import bonusTable, territoryTable
 
 
 # Germany Bonuses

@@ -6,7 +6,7 @@ from src.bonusCalculator import chinaBonusCalc, ukeurBonusCalc, ukpacBonusCalc
 from src.bonusCalculator import itaBonusCalc, romanAxis, africaAxis, oilAxis
 from src.bonusCalculator import anzacBonusCalc, malayaAlly, dutchAlly
 from src.mainBackend import updateTerritory, parser
-from src.mainBackend import territoryTable, bonusTable
+from src.header import territoryTable, bonusTable
 import os
 
 

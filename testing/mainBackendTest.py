@@ -1,6 +1,6 @@
 import unittest
 from src.mainBackend import updateTerritory, colorPicker, parser
-from src.mainBackend import ipcTable, territoryTable
+from src.header import ipcTable, territoryTable
 import os
 
 

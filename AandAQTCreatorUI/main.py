@@ -5,7 +5,8 @@ import sys
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
-from src.mainBackend import load, parser, ipcTable
+from src.mainBackend import load, parser
+from src.header import ipcTable
 from src.svg import svgViewer
 from ui_bonus import Ui_Bonus
 from ui_changeCountry import Ui_changeCountry
