@@ -106,7 +106,7 @@ def nextCountry(country):
 
 
 # TODO: windows file manager, needs to be connected to the frontend load
-def load():
+def loader():
     print("Loading data...")
     # parser(file)
 

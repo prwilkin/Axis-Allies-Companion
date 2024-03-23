@@ -35,29 +35,31 @@ class MyObject(QObject):
     # JS to Py that handles click events in the svg
     @Slot(str)
     def receiveId(self, element_id):
-        # print("Clicked on element with ID:", element_id)
-        status, territory = self.processId(element_id)
-        if status:
-            # print(territory)
-            # open window & get country
-            country = changeOwner(territory)
-            # update backend record keeping
-            updateTerritory(territory, country)
-            # get color to give to javascript
-            color = colorPicker(country)
-            if "Sea Zone" in territory:
-                self.sendColorToConvoyJS(territory, color)
+        import src.header as header
+        if header.phase == "Combat":
+            # print("Clicked on element with ID:", element_id)
+            status, territory = self.processId(element_id)
+            if status:
+                # print(territory)
+                # open window & get country
+                country = changeOwner(territory)
+                # update backend record keeping
+                updateTerritory(territory, country)
+                # get color to give to javascript
+                color = colorPicker(country)
+                if "Sea Zone" in territory:
+                    self.sendColorToConvoyJS(territory, color)
+                else:
+                    self.sendColorToGroupJS(territory, color)
+                # update display
+                if self.mainWindow is None:
+                    # print("None ID")
+                    import src.header as head
+                    self.mainWindow = head.mainWin
+                self.mainWindow.displayIPC()
+                self.mainWindow.update()
             else:
-                self.sendColorToGroupJS(territory, color)
-            # update display
-            if self.mainWindow is None:
-                # print("None ID")
-                import src.header as head
-                self.mainWindow = head.mainWin
-            self.mainWindow.displayIPC()
-            self.mainWindow.update()
-        else:
-            return None
+                return None
 
     # Py to JS function to call with group name and color
     @Slot(str, str)

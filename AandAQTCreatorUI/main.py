@@ -5,8 +5,7 @@ import sys
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
-from src.mainBackend import convoyCountry, nextCountry, load, parser
-from src.header import turnNum, phase, countryTurn, ipcTable
+from src.mainBackend import convoyCountry, nextCountry, saver, loader, parser
 from src.svg import svgViewer
 from ui_bonus import Ui_Bonus
 from ui_changeCountry import Ui_changeCountry
@@ -23,7 +22,6 @@ from ui_seazone import Ui_seazone
 
 
 class MainWindow(QMainWindow):
-
     def __init__(self):
         super().__init__()
         self.ui = Ui_MainWindow()
@@ -35,8 +33,8 @@ class MainWindow(QMainWindow):
 
         # button init
         self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
-        # self.ui.menuSave.triggered.connect()    # TODO: add save functionality
-        self.ui.menuLoad.triggered.connect(load())    # TODO: add load functionality
+        #self.ui.menuSave.triggered.connect(saver)    # TODO: add save functionality
+        #self.ui.menuLoad.triggered.connect(loader)    # TODO: add load functionality
 
         # Create and add the web browser to the layout
         self.ui.board = QWidget(self.ui.centralwidget)
@@ -52,7 +50,7 @@ class MainWindow(QMainWindow):
         self.displayItems()
 
     def nextPhase_Click(self):
-        print("Next")
+        # print("Next")
         import src.header as header
         if header.phase == "Purchase":
             if header.turnNum != 1:
@@ -64,7 +62,6 @@ class MainWindow(QMainWindow):
             self.displayIPC()
             header.phase = "Combat"
         elif header.phase == "Combat":
-            # TODO: check seazone for convoy
             convoys = convoyCountry(header.countryConvert[header.countryTurn])
             for convoy in convoys:
                 self.seazoneWidget = seazoneWindow()
@@ -87,26 +84,27 @@ class MainWindow(QMainWindow):
         # self.seazoneWidget.seazoneNum(125)
 
     def displayIPC(self):
-        self.ui.gerBank.setText(str(ipcTable["gerBank"]))
-        self.ui.gerTurn.setText(str(ipcTable["gerTurn"]))
-        self.ui.ussrBank.setText(str(ipcTable["ussrBank"]))
-        self.ui.ussrTurn.setText(str(ipcTable["ussrTurn"]))
-        self.ui.japBank.setText(str(ipcTable["japBank"]))
-        self.ui.japTurn.setText(str(ipcTable["japTurn"]))
-        self.ui.usaBank.setText(str(ipcTable["usBank"]))
-        self.ui.usaTurn.setText(str(ipcTable["usTurn"]))
-        self.ui.chinaBank.setText(str(ipcTable["chinaBank"]))
-        self.ui.chinaTurn.setText(str(ipcTable["chinaTurn"]))
-        self.ui.ukeurBank.setText(str(ipcTable["ukeurBank"]))
-        self.ui.ukeurTurn.setText(str(ipcTable["ukeurTurn"]))
-        self.ui.ukpacBank.setText(str(ipcTable["ukpacBank"]))
-        self.ui.ukpacTurn.setText(str(ipcTable["ukpacTurn"]))
-        self.ui.itaBank.setText(str(ipcTable["itaBank"]))
-        self.ui.itaTurn.setText(str(ipcTable["itaTurn"]))
-        self.ui.anzacBank.setText(str(ipcTable["anzacBank"]))
-        self.ui.anzacTurn.setText(str(ipcTable["anzacTurn"]))
-        self.ui.fraBank.setText(str(ipcTable["fraBank"]))
-        self.ui.fraTurn.setText(str(ipcTable["fraTurn"]))
+        import src.header as header
+        self.ui.gerBank.setText(str(header.ipcTable["gerBank"]))
+        self.ui.gerTurn.setText(str(header.ipcTable["gerTurn"]))
+        self.ui.ussrBank.setText(str(header.ipcTable["ussrBank"]))
+        self.ui.ussrTurn.setText(str(header.ipcTable["ussrTurn"]))
+        self.ui.japBank.setText(str(header.ipcTable["japBank"]))
+        self.ui.japTurn.setText(str(header.ipcTable["japTurn"]))
+        self.ui.usaBank.setText(str(header.ipcTable["usBank"]))
+        self.ui.usaTurn.setText(str(header.ipcTable["usTurn"]))
+        self.ui.chinaBank.setText(str(header.ipcTable["chinaBank"]))
+        self.ui.chinaTurn.setText(str(header.ipcTable["chinaTurn"]))
+        self.ui.ukeurBank.setText(str(header.ipcTable["ukeurBank"]))
+        self.ui.ukeurTurn.setText(str(header.ipcTable["ukeurTurn"]))
+        self.ui.ukpacBank.setText(str(header.ipcTable["ukpacBank"]))
+        self.ui.ukpacTurn.setText(str(header.ipcTable["ukpacTurn"]))
+        self.ui.itaBank.setText(str(header.ipcTable["itaBank"]))
+        self.ui.itaTurn.setText(str(header.ipcTable["itaTurn"]))
+        self.ui.anzacBank.setText(str(header.ipcTable["anzacBank"]))
+        self.ui.anzacTurn.setText(str(header.ipcTable["anzacTurn"]))
+        self.ui.fraBank.setText(str(header.ipcTable["fraBank"]))
+        self.ui.fraTurn.setText(str(header.ipcTable["fraTurn"]))
 
     def displayItems(self):
         import src.header as header
@@ -162,7 +160,6 @@ class seazoneWindow(QDialog):
         else:
             return
         header.ipcTable[self.country + "Bank"] -= self.seazoneUI.convoyLoss.value()
-        # pass input to the convoy loss functions for IPC TODO
         self.close()
 
     def seazone_Cancel_Click(self):

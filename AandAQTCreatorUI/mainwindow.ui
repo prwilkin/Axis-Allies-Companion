@@ -1109,20 +1109,26 @@
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSave">
+   <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Save</string>
+     <string>File</string>
     </property>
+    <addaction name="actionSave"/>
+    <addaction name="actionLoad"/>
    </widget>
-   <widget class="QMenu" name="menuLoad">
-    <property name="title">
-     <string>Load</string>
-    </property>
-   </widget>
-   <addaction name="menuSave"/>
-   <addaction name="menuLoad"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

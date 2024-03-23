@@ -28,6 +28,10 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 602)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet(u"")
+        self.actionSave = QAction(MainWindow)
+        self.actionSave.setObjectName(u"actionSave")
+        self.actionLoad = QAction(MainWindow)
+        self.actionLoad.setObjectName(u"actionLoad")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         palette = QPalette()
@@ -133,6 +137,7 @@ class Ui_MainWindow(object):
 
         self.phase = QLabel(self.verticalLayoutWidget_11)
         self.phase.setObjectName(u"phase")
+        self.phase.setTextFormat(Qt.RichText)
 
         self.verticalLayout.addWidget(self.phase)
 
@@ -461,17 +466,16 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 800, 26))
-        self.menuSave = QMenu(self.menubar)
-        self.menuSave.setObjectName(u"menuSave")
-        self.menuLoad = QMenu(self.menubar)
-        self.menuLoad.setObjectName(u"menuLoad")
+        self.menu = QMenu(self.menubar)
+        self.menu.setObjectName(u"menu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
-        self.menubar.addAction(self.menuSave.menuAction())
-        self.menubar.addAction(self.menuLoad.menuAction())
+        self.menubar.addAction(self.menu.menuAction())
+        self.menu.addAction(self.actionSave)
+        self.menu.addAction(self.actionLoad)
 
         self.retranslateUi(MainWindow)
 
@@ -480,6 +484,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        self.actionSave.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.actionLoad.setText(QCoreApplication.translate("MainWindow", u"Load", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Turn:</span></p></body></html>", None))
         self.phase.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">Combat Phase</span></p></body></html>", None))
         self.gerTurn.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" font-size:12pt; font-weight:700;\">###</span></p></body></html>", None))
@@ -515,7 +521,6 @@ class Ui_MainWindow(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:12pt; text-decoration: underline;\">Country:</span></p></body></html>", None))
         self.country.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:11pt;\">UK-Pac</span></p></body></html>", None))
         self.phaseButton.setText(QCoreApplication.translate("MainWindow", u"Next Phase", None))
-        self.menuSave.setTitle(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.menuLoad.setTitle(QCoreApplication.translate("MainWindow", u"Load", None))
+        self.menu.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
     # retranslateUi
 
