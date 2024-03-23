@@ -3,7 +3,7 @@ import os
 import sys
 
 from PySide6.QtCore import QRect
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog, QFileDialog
 
 from src.mainBackend import convoyCountry, nextCountry, saver, loader, parser
 from src.svg import svgViewer
@@ -17,6 +17,9 @@ from ui_purchase import Ui_Dialog
 #   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
 #   pyside6-uic ./AandAQTCreatorUI/bonus.ui -o ./AandAQTCreatorUI/ui_bonus.py
 #   pyside6-uic ./AandAQTCreatorUI/purchase.ui -o ./AandAQTCreatorUI/ui_purchase.py
+#
+# You need to run this for the executable version
+#   pyinstaller --hidden-import=PySide6.QtWebChannel --hidden-import=PySide6.QtWebEngineWidgets --add-data "src;src" .\AandAQTCreatorUI\main.py -F -n AxisAndAllies1940 -w
 from ui_mainwindow import Ui_MainWindow
 from ui_seazone import Ui_seazone
 
@@ -50,10 +53,18 @@ class MainWindow(QMainWindow):
         self.displayItems()
 
     def save_Click(self):
-        saver()
+        os.chdir("..")
+        file_name, _ = QFileDialog.getSaveFileName(self, "Save File", os.curdir + "/saves", "Text Files (*.txt)")
+        os.chdir("./AandAQTCreatorUI")
+        saver(file_name)
 
     def load_Click(self):
-        loader()
+        os.chdir("..")
+        file_name, _ = QFileDialog.getOpenFileName(self, "Open File", os.curdir + "/saves", "Text Files (*.txt)")
+        os.chdir("./AandAQTCreatorUI")
+        loader(file_name)
+        self.displayItems()
+        self.displayIPC()
 
     def nextPhase_Click(self):
         # print("Next")

@@ -1,6 +1,3 @@
-import tkinter as tk
-from tkinter import filedialog
-import os
 # Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
 # Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
 #
@@ -108,12 +105,9 @@ def nextCountry(country):
         return None
 
 
-def loader():
+def loader(load_path):
     # print("Loading data...")
     # parser(file)
-    os.chdir("..")
-    load_path = tk.filedialog.askopenfilename(initialdir=os.curdir + "/saves")   # prevents an empty tkinter window from appearing
-    os.chdir("./AandAQTCreatorUI")
     parser(load_path)
 
 
@@ -157,11 +151,9 @@ def parser(file):
     return file.close()
 
 
-def saver():
-    os.chdir("..")
-    save_path = tk.filedialog.asksaveasfile(mode='w', initialdir=os.curdir + "/saves", defaultextension=".txt")
-    os.chdir("./AandAQTCreatorUI")
+def saver(save_path):
     import src.header as header
+    save_path = open(save_path, "w")
     save_path.write("turn: " + str(header.turnNum) + "\n")
     save_path.write("phase: " + str(header.phase) + "\n")
     save_path.write("country: " + str(header.countryTurn) + "\n")
