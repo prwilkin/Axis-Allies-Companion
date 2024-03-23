@@ -1,6 +1,5 @@
 from src.header import turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable, convoyTable
-# TODO: victory cities quick list
-# TODO: Reference Table
+#
 # Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
 # Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
 #
@@ -14,7 +13,15 @@ from src.header import turnNum, phase, countryTurn, ipcTable, bonusTable, territ
 # Colors: ger, #626362; ussr, #BB0000; jap, #FE4800; us, #186518; china, #FE4800; ukeur, #FAC807; ukpac, #987906;
 # ita, #5E4220; anzac, #5B8684; fra, #2870BA; nue, #D1B883; pal, #FEEDC7; pax, #978762; seanue, #d9d9d9;
 
-# TODO: convoy logic needs to be added to detect the country
+
+def convoyCountry(country):
+    import src.header as header
+    x = list()
+    for territory in header.convoyTable.keys():
+        val = header.convoyTable[territory]
+        if val == country:
+            x.append(territory)
+    return x
 
 
 def changeOwner(territory):
@@ -27,8 +34,7 @@ def changeOwner(territory):
 
 def updateTerritory(territory, newCountry):
     if "Sea Zone" in territory:
-        seazoneTable[territory] = str(newCountry).lower()
-        # TODO: seazone changes
+        convoyTable[territory] = str(newCountry).lower()
     else:
         oldCountry, ipc = territoryTable[territory]
         # TODO: check for turn and war limits with extra functions
@@ -68,8 +74,6 @@ def colorPicker(country):
         return "#FEEDC7"
     elif country == "pax":
         return "#978762"
-    elif country == "seanue":
-        return '#d9d9d9'
     else:
         return None
 
@@ -88,20 +92,18 @@ def nextCountry(country):
     elif country == "UK-Eur":
         return "UK-Pac"
     elif country == "UK-Pac":
-        return "UK-Pac"
-    elif country == "Italy":
         return "Italy"
-    elif country == "ANZAC":
+    elif country == "Italy":
         return "ANZAC"
+    elif country == "ANZAC":
+        return "France"
     elif country == "France":
+        import src.header as header
+        header.turnNum += 1
         return "Germany"
     else:
         return None
 
-
-def nextTurn():
-    # TODO
-    return
 
 # TODO: windows file manager, needs to be connected to the frontend load
 def load():

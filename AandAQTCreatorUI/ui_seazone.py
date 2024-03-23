@@ -16,13 +16,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
-    QPlainTextEdit, QPushButton, QSizePolicy, QWidget)
+    QPushButton, QRadioButton, QSizePolicy, QSpinBox,
+    QVBoxLayout, QWidget)
 
 class Ui_seazone(object):
     def setupUi(self, seazone):
         if not seazone.objectName():
             seazone.setObjectName(u"seazone")
-        seazone.resize(320, 176)
+        seazone.resize(320, 320)
         palette = QPalette()
         brush = QBrush(QColor(0, 0, 0, 255))
         brush.setStyle(Qt.SolidPattern)
@@ -106,12 +107,9 @@ class Ui_seazone(object):
         self.seazoneNum = QLabel(seazone)
         self.seazoneNum.setObjectName(u"seazoneNum")
         self.seazoneNum.setGeometry(QRect(260, 0, 41, 41))
-        self.numInput = QPlainTextEdit(seazone)
-        self.numInput.setObjectName(u"numInput")
-        self.numInput.setGeometry(QRect(30, 60, 251, 51))
         self.horizontalLayoutWidget = QWidget(seazone)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(120, 130, 195, 41))
+        self.horizontalLayoutWidget.setGeometry(QRect(120, 270, 195, 41))
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -126,6 +124,73 @@ class Ui_seazone(object):
 
         self.horizontalLayout.addWidget(self.cancelButton)
 
+        self.convoyLoss = QSpinBox(seazone)
+        self.convoyLoss.setObjectName(u"convoyLoss")
+        self.convoyLoss.setGeometry(QRect(190, 110, 51, 41))
+        self.verticalLayoutWidget = QWidget(seazone)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(10, 40, 101, 271))
+        self.buttons = QVBoxLayout(self.verticalLayoutWidget)
+        self.buttons.setObjectName(u"buttons")
+        self.buttons.setContentsMargins(0, 0, 0, 0)
+        self.ussr = QRadioButton(self.verticalLayoutWidget)
+        self.ussr.setObjectName(u"ussr")
+
+        self.buttons.addWidget(self.ussr)
+
+        self.ukeur = QRadioButton(self.verticalLayoutWidget)
+        self.ukeur.setObjectName(u"ukeur")
+
+        self.buttons.addWidget(self.ukeur)
+
+        self.ukpac = QRadioButton(self.verticalLayoutWidget)
+        self.ukpac.setObjectName(u"ukpac")
+
+        self.buttons.addWidget(self.ukpac)
+
+        self.anzac = QRadioButton(self.verticalLayoutWidget)
+        self.anzac.setObjectName(u"anzac")
+
+        self.buttons.addWidget(self.anzac)
+
+        self.usa = QRadioButton(self.verticalLayoutWidget)
+        self.usa.setObjectName(u"usa")
+
+        self.buttons.addWidget(self.usa)
+
+        self.china = QRadioButton(self.verticalLayoutWidget)
+        self.china.setObjectName(u"china")
+
+        self.buttons.addWidget(self.china)
+
+        self.fra = QRadioButton(self.verticalLayoutWidget)
+        self.fra.setObjectName(u"fra")
+
+        self.buttons.addWidget(self.fra)
+
+        self.ger = QRadioButton(self.verticalLayoutWidget)
+        self.ger.setObjectName(u"ger")
+
+        self.buttons.addWidget(self.ger)
+
+        self.jap = QRadioButton(self.verticalLayoutWidget)
+        self.jap.setObjectName(u"jap")
+
+        self.buttons.addWidget(self.jap)
+
+        self.ita = QRadioButton(self.verticalLayoutWidget)
+        self.ita.setObjectName(u"ita")
+
+        self.buttons.addWidget(self.ita)
+
+        self.nue = QRadioButton(self.verticalLayoutWidget)
+        self.nue.setObjectName(u"nue")
+
+        self.buttons.addWidget(self.nue)
+
+        self.label_2 = QLabel(seazone)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(132, 59, 181, 31))
 
         self.retranslateUi(seazone)
 
@@ -141,5 +206,17 @@ class Ui_seazone(object):
         self.seazoneNum.setText(QCoreApplication.translate("seazone", u"<html><head/><body><p><span style=\" font-size:12pt;\">###</span></p></body></html>", None))
         self.okButton.setText(QCoreApplication.translate("seazone", u"Confirm", None))
         self.cancelButton.setText(QCoreApplication.translate("seazone", u"Cancel", None))
+        self.ussr.setText(QCoreApplication.translate("seazone", u"USSR", None))
+        self.ukeur.setText(QCoreApplication.translate("seazone", u"UK-Europe", None))
+        self.ukpac.setText(QCoreApplication.translate("seazone", u"UK-Pacfic", None))
+        self.anzac.setText(QCoreApplication.translate("seazone", u"Anzac", None))
+        self.usa.setText(QCoreApplication.translate("seazone", u"USA", None))
+        self.china.setText(QCoreApplication.translate("seazone", u"China", None))
+        self.fra.setText(QCoreApplication.translate("seazone", u"France", None))
+        self.ger.setText(QCoreApplication.translate("seazone", u"Germany", None))
+        self.jap.setText(QCoreApplication.translate("seazone", u"Japan", None))
+        self.ita.setText(QCoreApplication.translate("seazone", u"Italy", None))
+        self.nue.setText(QCoreApplication.translate("seazone", u"Neutral", None))
+        self.label_2.setText(QCoreApplication.translate("seazone", u"<html><head/><body><p><span style=\" font-style:italic;\">Roll dice for convoy losses</span></p></body></html>", None))
     # retranslateUi
 

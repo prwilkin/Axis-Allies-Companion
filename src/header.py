@@ -7,6 +7,8 @@ bonusTable = {}         # Bonuses name as key, value is Bool* or int* (basically
 territoryTable = {}     # Territory as key, value 0 is string* country controlling & value 1 is ipc int*
 seazoneTable = {}       # Seazone as key, value is string* country or None
 convoyTable = {}        # Seazone as key, value is string* country
+countryConvert = {'Germany': 'ger', 'USSR': 'ussr', 'Japan': 'jap', 'USA': 'us', 'China': 'china', 'UK-Europe': 'ukeur','UK-Pacific': 'ukpac',
+                  'Italy': 'ita', 'ANZAC': 'anzac', 'France': 'fra', 'Neutral': 'nue', 'Pro-Ally': 'pal', 'Pro-Axis': 'pax'}
 # TODO: victory cities quick list
 # TODO: Reference Table
 # Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;

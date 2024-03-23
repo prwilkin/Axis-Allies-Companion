@@ -32,7 +32,7 @@
                     //console.log(children[i].tagName);
                     if (children[i].tagName !== 'text') {
                         children[i].style.fill = color;
-                        console.log("Color applied to: " + children[i].id);
+                        //console.log("Color applied to: " + children[i].id);
                     }
                 }
                 } else {
@@ -40,7 +40,35 @@
             }
         }
 
-        // TODO: convoy box color
+        // Receives color from Py and applies it to a path
+        function applyColorToConvoy(groupName, color) {
+            //console.log("recieved call: " + groupName + " | " + color);
+            var svgDoc = document.getElementById('svgObject').contentDocument;
+            var group = svgDoc.getElementById(groupName);
+            //console.log("Group: " + group.id);
+            if (group) {
+                //console.log(group.children);
+                var children = group.children;
+                //console.log(children.length)
+                for (var i = 0; i < children.length; i++) {
+                    //console.log(children[i].tagName);
+                    if (children[i].id.includes('Convoy')) {
+                        //console.log("Path: " + path.id);
+                        // Check if the element is not a text element
+                        if (children[i].tagName !== 'text') {
+                            if (color.includes('#D1B883')) {
+                                children[i].style.fill = '#d9d9d9'
+                            } else {
+                                children[i].style.fill = color;
+                            }
+                            //console.log("Color applied to: " + children[i].id);
+                        }
+                    }
+                }
+            } else {
+                console.log("Group not found: " + groupName);
+            }
+        }
 
         // when loaded add clicking to each element
         window.onload = function () {
@@ -50,10 +78,10 @@
 
                 // Adding click listeners
                 var svgItems = svgDoc.getElementsByTagName("*");
-                console.log("Adding click listeners to " + svgItems.length + " items.");
+                //console.log("Adding click listeners to " + svgItems.length + " items.");
                 for (var i = 0; i < svgItems.length; i++) {
                     svgItems[i].addEventListener("click", function (event) {
-                        console.log("Clicked on element with ID: " + event.target.id);
+                        //console.log("Clicked on element with ID: " + event.target.id);
                         new QWebChannel(qt.webChannelTransport, function (channel) {
                             var myObj = channel.objects.myObj;
                             myObj.receiveId(event.target.id);

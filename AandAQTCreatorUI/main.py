@@ -5,17 +5,19 @@ import sys
 from PySide6.QtCore import QRect
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QDialog
 
-from src.mainBackend import nextCountry, load, parser
+from src.mainBackend import convoyCountry, nextCountry, load, parser
 from src.header import turnNum, phase, countryTurn, ipcTable
 from src.svg import svgViewer
 from ui_bonus import Ui_Bonus
 from ui_changeCountry import Ui_changeCountry
+from ui_purchase import Ui_Dialog
 # Important:
 # You need to run the following command to generate the ui_****.py file
 #   pyside6-uic ./AandAQTCreatorUI/mainwindow.ui -o ./AandAQTCreatorUI/ui_mainwindow.py
 #   pyside6-uic ./AandAQTCreatorUI/changecountry.ui -o ./AandAQTCreatorUI/ui_changeCountry.py
 #   pyside6-uic ./AandAQTCreatorUI/seazone.ui -o ./AandAQTCreatorUI/ui_seazone.py
 #   pyside6-uic ./AandAQTCreatorUI/bonus.ui -o ./AandAQTCreatorUI/ui_bonus.py
+#   pyside6-uic ./AandAQTCreatorUI/purchase.ui -o ./AandAQTCreatorUI/ui_purchase.py
 from ui_mainwindow import Ui_MainWindow
 from ui_seazone import Ui_seazone
 
@@ -53,18 +55,28 @@ class MainWindow(QMainWindow):
         print("Next")
         import src.header as header
         if header.phase == "Purchase":
-            # process bonus & add income to bank
-            from src.bonusCalculator import bonusIncomeCalculator
-            bonusIncomeCalculator()
-            header.countryTurn = nextCountry(header.countryTurn)
+            if header.turnNum != 1:
+                # process bonus & add income to bank
+                from src.bonusCalculator import bonusIncomeCalculator
+                bonusIncomeCalculator()
+            self.purUI = purchaseWindow()
+            self.purUI.exec()
+            self.displayIPC()
             header.phase = "Combat"
         elif header.phase == "Combat":
             # TODO: check seazone for convoy
+            convoys = convoyCountry(header.countryConvert[header.countryTurn])
+            for convoy in convoys:
+                self.seazoneWidget = seazoneWindow()
+                convoy = convoy.replace("Sea Zone ", "")
+                self.seazoneWidget.seazoneNum(convoy)
+                self.seazoneWidget.exec()
             header.phase = "Income"
         elif header.phase == "Income":
             # show bonus window
             self.bonusWidget = bonusWindow()
-            self.bonusWidget.show()
+            self.bonusWidget.exec()
+            header.countryTurn = nextCountry(header.countryTurn)
             header.phase = "Purchase"
         self.displayItems()
         # self.changeCountryWidget = changeCountryWindow()
@@ -111,18 +123,45 @@ class seazoneWindow(QDialog):
         self.seazoneUI = Ui_seazone()
         self.seazoneUI.setupUi(self)
 
+        self.country = ""
+
         # buttons
         self.seazoneUI.okButton.clicked.connect(self.seazone_Ok_Click)
         self.seazoneUI.cancelButton.clicked.connect(self.seazone_Cancel_Click)
 
     def seazoneNum(self, num):
         self.seazoneUI.seazoneNum.setText(str(num))
+        self.seazoneUI.seazoneNum.setStyleSheet("font-size:12pt")
         self.setWindowTitle("Seazone " + str(num))
 
     def seazone_Ok_Click(self):
         # print("Seazone")
-        x = int(self.seazoneUI.numInput.toPlainText())
-        print(x)
+        import src.header as header
+        if self.seazoneUI.ussr.isChecked():
+            self.country = "ussr"
+        elif self.seazoneUI.ukeur.isChecked():
+            self.country = "ukeur"
+        elif self.seazoneUI.ukpac.isChecked():
+            self.country = "ukpac"
+        elif self.seazoneUI.anzac.isChecked():
+            self.country = "anzac"
+        elif self.seazoneUI.usa.isChecked():
+            self.country = "us"
+        elif self.seazoneUI.china.isChecked():
+            self.country = "china"
+        elif self.seazoneUI.fra.isChecked():
+            self.country = "fra"
+        elif self.seazoneUI.ger.isChecked():
+            self.country = "ger"
+        elif self.seazoneUI.jap.isChecked():
+            self.country = "jap"
+        elif self.seazoneUI.ita.isChecked():
+            self.country = "ita"
+        elif self.seazoneUI.nue.isChecked():
+            self.country = "nue"
+        else:
+            return
+        header.ipcTable[self.country + "Bank"] -= self.seazoneUI.convoyLoss.value()
         # pass input to the convoy loss functions for IPC TODO
         self.close()
 
@@ -168,9 +207,10 @@ class changeCountryWindow(QDialog):
             self.country = "jap"
         elif self.changeCountryUI.ita.isChecked():
             self.country = "ita"
+        elif self.changeCountryUI.nue.isChecked():
+            self.country = "nue"
         else:
             return
-        # TODO: implement changed country
         self.close()
 
     def changeCountry_Cancel_Click(self):
@@ -187,6 +227,7 @@ class bonusWindow(QDialog):
 
         # buttons
         self.bonusUI.okButton.clicked.connect(self.bonus_Ok_Clicked)
+        # TODO: if checked stay checked
 
     def bonus_Ok_Clicked(self):
         import src.header as header
@@ -224,6 +265,23 @@ class bonusWindow(QDialog):
             header.bonusTable["unprovoked"] = True
         if self.bonusUI.usfra.isChecked() and not header.bonusTable["usfra"]:
             header.bonusTable["usfra"] = True
+        self.close()
+
+
+class purchaseWindow(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.purUI = Ui_Dialog()
+        self.purUI.setupUi(self)
+        self.setWindowTitle("Purchase")
+
+        # buttons
+        self.purUI.okButton.clicked.connect(self.purchase_Ok_Click)
+
+    def purchase_Ok_Click(self):
+        import src.header as header
+        print("Close Pur")
+        header.ipcTable[header.countryConvert[header.countryTurn] + "Bank"] -= self.purUI.ipc.value()
         self.close()
 
 

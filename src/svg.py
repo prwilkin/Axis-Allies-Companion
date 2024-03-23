@@ -35,7 +35,7 @@ class MyObject(QObject):
     # JS to Py that handles click events in the svg
     @Slot(str)
     def receiveId(self, element_id):
-        print("Clicked on element with ID:", element_id)
+        # print("Clicked on element with ID:", element_id)
         status, territory = self.processId(element_id)
         if status:
             # print(territory)
@@ -45,7 +45,10 @@ class MyObject(QObject):
             updateTerritory(territory, country)
             # get color to give to javascript
             color = colorPicker(country)
-            self.sendColorToJavaScript(territory, color)
+            if "Sea Zone" in territory:
+                self.sendColorToConvoyJS(territory, color)
+            else:
+                self.sendColorToGroupJS(territory, color)
             # update display
             if self.mainWindow is None:
                 # print("None ID")
@@ -58,7 +61,19 @@ class MyObject(QObject):
 
     # Py to JS function to call with group name and color
     @Slot(str, str)
-    def sendColorToJavaScript(self, groupName, color):
+    def sendColorToConvoyJS(self, groupName, color):
+        # print("Send Js")
+        script = f"applyColorToConvoy('{groupName}', '{color}');"
+        if self.mainWindow is None:
+            # print("None Color")
+            import src.header as head
+            self.mainWindow = head.mainWin
+        # print(script)
+        self.mainWindow.ui.browser.page().runJavaScript(script)
+
+    # Py to JS function to call with group name and color
+    @Slot(str, str)
+    def sendColorToGroupJS(self, groupName, color):
         # print("Send Js")
         script = f"applyColorToGroup('{groupName}', '{color}');"
         if self.mainWindow is None:
