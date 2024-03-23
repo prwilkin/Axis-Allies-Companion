@@ -33,8 +33,8 @@ class MainWindow(QMainWindow):
 
         # button init
         self.ui.phaseButton.clicked.connect(self.nextPhase_Click)
-        #self.ui.menuSave.triggered.connect(saver)    # TODO: add save functionality
-        #self.ui.menuLoad.triggered.connect(loader)    # TODO: add load functionality
+        self.ui.actionSave.triggered.connect(self.save_Click)    # TODO: add save functionality
+        self.ui.actionLoad.triggered.connect(self.load_Click)    # TODO: add load functionality
 
         # Create and add the web browser to the layout
         self.ui.board = QWidget(self.ui.centralwidget)
@@ -48,6 +48,12 @@ class MainWindow(QMainWindow):
         os.chdir("./AandAQTCreatorUI")
         self.displayIPC()
         self.displayItems()
+
+    def save_Click(self):
+        saver()
+
+    def load_Click(self):
+        loader()
 
     def nextPhase_Click(self):
         # print("Next")
@@ -211,7 +217,7 @@ class changeCountryWindow(QDialog):
         self.close()
 
     def changeCountry_Cancel_Click(self):
-        print("Cancel")
+        # print("Cancel")
         self.close()
 
 
@@ -277,7 +283,6 @@ class purchaseWindow(QDialog):
 
     def purchase_Ok_Click(self):
         import src.header as header
-        print("Close Pur")
         header.ipcTable[header.countryConvert[header.countryTurn] + "Bank"] -= self.purUI.ipc.value()
         self.close()
 

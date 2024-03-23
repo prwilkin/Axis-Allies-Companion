@@ -1,5 +1,6 @@
-from src.header import turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable, convoyTable
-#
+import tkinter as tk
+from tkinter import filedialog
+import os
 # Owners: Germany, ger; USSR, ussr; Japan, jap; USA, us; China, china; UK-Europe, ukeur; UK-Pacific, ukpac;
 # Italy, ita; ANZAC, anzac; France, fra, Neutral, nue; Pro-Ally, pal; Pro-Axis, pax;
 #
@@ -33,16 +34,18 @@ def changeOwner(territory):
 
 
 def updateTerritory(territory, newCountry):
+    import src.header as header
     if "Sea Zone" in territory:
-        convoyTable[territory] = str(newCountry).lower()
+        header.seazoneTable[territory] = str(newCountry).lower()
+        header.convoyTable[territory] = str(newCountry).lower()
     else:
-        oldCountry, ipc = territoryTable[territory]
+        oldCountry, ipc = header.territoryTable[territory]
         # TODO: check for turn and war limits with extra functions
         if oldCountry not in ("nue", "pal", "pax"):
-            ipcTable[oldCountry + 'Turn'] -= ipc
+            header.ipcTable[oldCountry + 'Turn'] -= ipc
         if newCountry not in ("nue", "pal", "pax"):
-            ipcTable[newCountry + 'Turn'] += ipc
-        territoryTable[territory] = [str(newCountry).lower(), ipc]
+            header.ipcTable[newCountry + 'Turn'] += ipc
+        header.territoryTable[territory] = [str(newCountry).lower(), ipc]
     # print("Updated Territory")
 
 
@@ -105,57 +108,72 @@ def nextCountry(country):
         return None
 
 
-# TODO: windows file manager, needs to be connected to the frontend load
 def loader():
-    print("Loading data...")
+    # print("Loading data...")
     # parser(file)
+    os.chdir("..")
+    load_path = tk.filedialog.askopenfilename(initialdir=os.curdir + "/saves")   # prevents an empty tkinter window from appearing
+    os.chdir("./AandAQTCreatorUI")
+    parser(load_path)
 
 
-# TODO: This is a parser, connect with windows File manager
 def parser(file):
     file = open(file)
     # print("Begin parsing")
-    global turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable
+    import src.header as header
     i = 1
     for line in file:
         if i < 38:  # line 38 begins territory
             key, value = line.split(": ")
             value = value.strip()
             if i == 1:
-                turnNum = int(value)
+                header.turnNum = int(value)
             elif i == 2:
-                phase = str(value)
+                header.phase = str(value)
             elif i == 3:
-                countryTurn = str(value)
+                header.countryTurn = str(value)
             elif i <= 23:
-                ipcTable.update({key: int(value)})
+                header.ipcTable.update({key: int(value)})
             elif i <= 36:
                 if value == "False":
-                    bonusTable.update({key: False})
+                    header.bonusTable.update({key: False})
                 else:
-                    bonusTable.update({key: True})
+                    header.bonusTable.update({key: True})
             elif i == 37:
-                bonusTable.update({key: int(value)})
+                header.bonusTable.update({key: int(value)})
         else:
             territory, info = line.split(": ")
             if i <= 238:    # line 239 is seazone
                 country, IPC = info.split("/")
-                territoryTable.update({territory: [str(country), int(IPC)]})
+                header.territoryTable.update({territory: [str(country), int(IPC)]})
             else:
                 if info is None:
-                    seazoneTable.update({territory: None})
+                    header.seazoneTable.update({territory: None})
                 else:
-                    seazoneTable.update({territory: str(info)})
-                    convoyTable.update({territory: str(info)})
+                    header.seazoneTable.update({territory: str(info)})
+                    header.convoyTable.update({territory: str(info)})
         i += 1
     # print("End parsing")
     return file.close()
 
 
-def saver(file):
-    file = open(file)
-    global turnNum, phase, countryTurn, ipcTable, bonusTable, territoryTable, seazoneTable
-    # TODO: implement saving to file, add create a save file if one is not passed in
+def saver():
+    os.chdir("..")
+    save_path = tk.filedialog.asksaveasfile(mode='w', initialdir=os.curdir + "/saves", defaultextension=".txt")
+    os.chdir("./AandAQTCreatorUI")
+    import src.header as header
+    save_path.write("turn: " + str(header.turnNum) + "\n")
+    save_path.write("phase: " + str(header.phase) + "\n")
+    save_path.write("country: " + str(header.countryTurn) + "\n")
+    for x in header.ipcTable.keys():
+        save_path.write(x + ': ' + str(header.ipcTable[x]) + "\n")
+    for x in header.bonusTable.keys():
+        save_path.write(x + ': ' + str(header.bonusTable[x]) + "\n")
+    for x in header.territoryTable.keys():
+        save_path.write(x + ': ' + str(header.territoryTable[x][0]) + '/' + str(header.territoryTable[x][1]) + "\n")
+    for x in header.seazoneTable.keys():
+        y = str(header.seazoneTable[x]).replace("\n", "")
+        save_path.write(x + ': ' + y + "\n")
     return
 
 
