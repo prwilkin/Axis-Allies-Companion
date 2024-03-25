@@ -76,7 +76,6 @@ class MainWindow(QMainWindow):
                 bonusIncomeCalculator()
             self.purUI = purchaseWindow()
             self.purUI.exec()
-            self.displayIPC()
             header.phase = "Combat"
         elif header.phase == "Combat":
             convoys = convoyCountry(header.countryConvert[header.countryTurn])
@@ -92,6 +91,7 @@ class MainWindow(QMainWindow):
             self.bonusWidget.exec()
             header.countryTurn = nextCountry(header.countryTurn)
             header.phase = "Purchase"
+        self.displayIPC()
         self.displayItems()
         # self.changeCountryWidget = changeCountryWindow()
         # self.changeCountryWidget.show()
@@ -242,6 +242,35 @@ class bonusWindow(QDialog):
         # buttons
         self.bonusUI.okButton.clicked.connect(self.bonus_Ok_Clicked)
         # TODO: if checked stay checked
+
+        # check Boxes
+        import src.header as header
+        if header.bonusTable["ussr-ger"]:
+            self.bonusUI.ussr_ger_war.setChecked(True)
+        if header.bonusTable["ussr-jap"]:
+            self.bonusUI.ussr_jap.setChecked(True)
+        if header.bonusTable["ussr-ita"]:
+            self.bonusUI.ussr_ita.setChecked(True)
+        if header.bonusTable["uk/anzac-jap"]:
+            self.bonusUI.uk_jap.setChecked(True)
+        if header.bonusTable["us-jap"]:
+            self.bonusUI.us_jap.setChecked(True)
+        if header.bonusTable["us-ger"]:
+            self.bonusUI.us_ger.setChecked(True)
+        if header.bonusTable["egypt"]:
+            self.bonusUI.egypt.setChecked(True)
+        if header.bonusTable["seazone125"]:
+            self.bonusUI.seazone125.setChecked(True)
+        if header.bonusTable["allyussr"]:
+            self.bonusUI.allyussr.setChecked(True)
+        if header.bonusTable["mediterranean"]:
+            self.bonusUI.mediterranean.setChecked(True)
+        if header.bonusTable["indochina"]:
+            self.bonusUI.indochina.setChecked(True)
+        if header.bonusTable["unprovoked"]:
+            self.bonusUI.unprovoked.setChecked(True)
+        if header.bonusTable["usfra"]:
+            self.bonusUI.usfra.setChecked(True)
 
     def bonus_Ok_Clicked(self):
         import src.header as header
